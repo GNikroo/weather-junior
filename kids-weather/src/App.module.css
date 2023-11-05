@@ -1,0 +1,45 @@
+.App {
+  position: relative;
+}
+
+.Title {
+  font-family: 'WindSong', cursive;
+  font-weight: 400;
+  font-size: 3rem;
+  background-color: inherit;
+  padding-top: 3rem;
+  margin: 0;
+  background-color: transparent;
+}
+
+.Section {
+  background-color: transparent;
+  overflow: hidden;
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 94vh;
+  margin-bottom: .5rem;
+}
+
+.Color1 {
+  background-color: #FAE1DD;
+}
+
+.Color2 {
+  background-color: #FCD5CE;
+}
+
+.Color3 {
+  background-color: #FEC5BB;
+}
+
+.Color4 {
+  background-color: #FDA99A;
+}
+
+.Color5 {
+  background-color: #FD8E7B;
+}

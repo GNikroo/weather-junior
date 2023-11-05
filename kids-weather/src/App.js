@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from "./App.module.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import CurrentWeather from "./components/pages/CurrentWeather";
+import About from "./components/About";
+import HistoricalWeather from "./components/pages/HistoricalWeather";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={styles.App}>
+        <NavBar />
+        <div className={styles.Content}>
+          <Routes>
+            <Route path="*" element={<NotFound />} />
+            <Route path="/today" element={<CurrentWeather />} />
+            <Route path="/past" element={<HistoricalWeather />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
