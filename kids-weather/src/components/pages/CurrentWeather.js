@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { outfits, weatherConditions } from "../../data";
-import { Container } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/CurrentWeather.module.css";
+import appStyles from "../../App.module.css";
 
 const CurrentWeather = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -20,7 +21,7 @@ const CurrentWeather = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const accessKey = "7492d546848ecbf59a6a171a50ab1854";
+        const accessKey = "92b8a00626b8571760808a5112afad7e";
         const weatherResponse = await axios.get(
           `http://api.weatherstack.com/current?access_key=${accessKey}&query=${location}`
         );
@@ -84,25 +85,35 @@ const CurrentWeather = () => {
           <p>Loading...</p>
         ) : (
           weatherData && (
-            <>
-              <img
-                src={getWeatherIcon(weatherData.weather_code)}
-                height={100}
-                alt="Weather Icon"
-              />
-              <div>{weatherData.weather_descriptions}</div>
-              <div>{weatherData.temperature}°C</div>
-              <div>
-                <img
-                  src={
-                    getOutfit(weatherData.temperature, weatherData.weather_code)
-                      .image
-                  }
-                  height={300}
-                  alt="Outfit"
-                />
-              </div>
-            </>
+            <Container className={appStyles.Section}>
+              <Row>
+                <Col>
+                  <Image
+                    src={getWeatherIcon(weatherData.weather_code)}
+                    height={100}
+                    alt="Weather Icon"
+                  />
+                </Col>
+                <Col className={styles.Conditions}>
+                  <p>{weatherData.weather_descriptions}</p>
+                  <p>{weatherData.temperature}°C</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Image
+                    src={
+                      getOutfit(
+                        weatherData.temperature,
+                        weatherData.weather_code
+                      ).image
+                    }
+                    height={350}
+                    alt="Outfit"
+                  />
+                </Col>
+              </Row>
+            </Container>
           )
         )}
       </div>
