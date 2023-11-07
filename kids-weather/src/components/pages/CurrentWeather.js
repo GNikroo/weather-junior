@@ -3,7 +3,7 @@ import axios from "axios";
 import { weatherConditions } from "../../data";
 
 const CurrentWeather = () => {
-  const [weatherCode, setWeatherCode] = useState(null);
+  const [weatherData, setWeatherData] = useState(null);
   const [location, setLocation] = useState(
     localStorage.getItem("recentLocation") || "Stockholm"
   );
@@ -26,8 +26,8 @@ const CurrentWeather = () => {
         if (weatherResponse.data && weatherResponse.data.current) {
           console.log("Weather Data:", weatherResponse.data);
 
-          const currentWeatherCode = weatherResponse.data.current.weather_code;
-          setWeatherCode(currentWeatherCode);
+          const currentWeatherData = weatherResponse.data.current;
+          setWeatherData(currentWeatherData);
         } else {
           console.error("Weather data not found");
         }
@@ -46,25 +46,30 @@ const CurrentWeather = () => {
         return condition[code].icon;
       }
     }
-
     return "default-icon";
   };
 
   return (
-    <div>
-      <input type="text" value={location} onChange={handleLocationChange} />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        weatherCode && (
-          <img
-            src={getWeatherIcon(weatherCode)}
-            height="100"
-            alt="Weather Icon"
-          />
-        )
-      )}
-    </div>
+    <>
+      <div>
+        <input type="text" value={location} onChange={handleLocationChange} />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          weatherData && (
+            <>
+              <img
+                src={getWeatherIcon(weatherData.weather_code)}
+                height="100"
+                alt="Weather Icon"
+              />
+              <div>{weatherData.weather_descriptions}</div>
+              <div>{weatherData.temperature}°C</div>
+            </>
+          )
+        )}
+      </div>
+    </>
   );
 };
 
