@@ -26,8 +26,7 @@ const CurrentWeather = () => {
         if (weatherResponse.data && weatherResponse.data.current) {
           console.log("Weather Data:", weatherResponse.data);
 
-          const currentWeatherData = weatherResponse.data.current;
-          setWeatherData(currentWeatherData);
+          setWeatherData(weatherResponse.data.current);
         } else {
           console.error("Weather data not found");
         }
