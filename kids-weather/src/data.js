@@ -6,6 +6,7 @@ import img5 from "./assets/clothing/Wintergear.png";
 import img6 from "./assets/clothing/Windy.png";
 import icon1 from "./assets/icons/cloud.png";
 import icon2 from "./assets/icons/rainy.png";
+import icon3 from "./assets/icons/foog.png";
 
 export const outfits = {
   default: { image: img1, alt: "child dressed in pajamas" },
@@ -24,7 +25,7 @@ export const weatherConditions = {
     },
     143: {
       description: "Mist",
-      icon: "wsymbol_0006_mist",
+      icon: icon3,
     },
     122: {
       description: "Overcast",
