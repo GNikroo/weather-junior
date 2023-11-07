@@ -7,6 +7,20 @@ import img6 from "./assets/clothing/Windy.png";
 import icon1 from "./assets/icons/cloud.png";
 import icon2 from "./assets/icons/rainy.png";
 import icon3 from "./assets/icons/foog.png";
+import icon4 from "./assets/icons/cloudy.png";
+import icon5 from "./assets/icons/cloud1.png";
+import icon6 from "./assets/icons/cloud2.png";
+import icon8 from "./assets/icons/hail.png";
+import icon9 from "./assets/icons/rain1.png";
+import icon10 from "./assets/icons/rainy.png";
+import icon11 from "./assets/icons/snowy.png";
+import icon12 from "./assets/icons/snowy1.png";
+import icon14 from "./assets/icons/storm.png";
+import icon15 from "./assets/icons/storm1.png";
+import icon16 from "./assets/icons/storm2.png";
+import icon17 from "./assets/icons/storm3.png";
+import icon18 from "./assets/icons/sun.png";
+import icon19 from "./assets/icons/windy.png";
 
 export const outfits = {
   default: { image: img1, alt: "child dressed in pajamas" },
@@ -21,81 +35,81 @@ export const weatherConditions = {
   dry: {
     248: {
       description: "Fog",
-      icon: "wsymbol_0007_fog",
+      icon: icon3,
     },
     143: {
       description: "Mist",
-      icon: icon3,
+      icon: icon19,
     },
     122: {
       description: "Overcast",
-      icon: "wsymbol_0004_black_low_cloud",
+      icon: icon1,
     },
     119: {
       description: "Cloudy",
-      icon: "wsymbol_0003_white_cloud",
+      icon: icon6,
     },
     116: {
       description: "Partly Cloudy",
-      icon: icon1,
+      icon: icon4,
     },
     113: {
       description: "Clear/Sunny",
-      icon: "wsymbol_0001_sunny",
+      icon: icon18,
     },
   },
   wet: {
     389: {
       description: "Moderate or heavy rain in area with thunder",
-      icon: "wsymbol_0024_thunderstorms",
+      icon: icon14,
     },
     386: {
       description: "Patchy light rain in area with thunder",
-      icon: "wsymbol_0016_thundery_showers",
+      icon: icon15,
     },
     359: {
       description: "Torrential rain shower",
-      icon: "wsymbol_0018_cloudy_with_heavy_rain",
+      icon: icon9,
     },
     356: {
       description: "Moderate or heavy rain shower",
-      icon: "wsymbol_0010_heavy_rain_showers",
+      icon: icon9,
     },
     338: {
       description: "Heavy snow",
-      icon: "wsymbol_0020_cloudy_with_heavy_snow",
+      icon: icon11,
     },
     335: {
       description: "Patchy heavy snow",
-      icon: "wsymbol_0012_heavy_snow_showers",
+      icon: icon12,
     },
     332: {
       description: "Moderate snow",
-      icon: "wsymbol_0020_cloudy_with_heavy_snow",
+      icon: icon12,
     },
     314: {
       description: "Moderate or Heavy freezing rain",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon10,
     },
     311: {
       description: "Light freezing rain",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon10,
     },
     308: {
       description: "Heavy rain",
-      icon: "wsymbol_0018_cloudy_with_heavy_rain",
+      icon: icon9,
     },
     305: {
       description: "Heavy rain at times",
-      icon: "wsymbol_0010_heavy_rain_showers",
+      icon: icon9,
     },
     302: {
       description: "Moderate rain",
-      icon: "wsymbol_0018_cloudy_with_heavy_rain",
+      icon: icon9,
     },
     299: {
       description: "Moderate rain at times",
-      icon: "wsymbol_0010_heavy_rain_showers",
+      icon: icon9,
     },
     296: {
       description: "Light rain",
@@ -103,113 +117,113 @@ export const weatherConditions = {
     },
     293: {
       description: "Patchy light rain",
-      icon: "wsymbol_0017_cloudy_with_light_rain",
+      icon: icon5,
     },
     284: {
       description: "Heavy freezing drizzle",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon8,
     },
     281: {
       description: "Freezing drizzle",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon8,
     },
     266: {
       description: "Light drizzle",
-      icon: "wsymbol_0017_cloudy_with_light_rain",
+      icon: icon5,
     },
     263: {
       description: "Patchy light drizzle",
-      icon: "wsymbol_0009_light_rain_showers",
+      icon: icon5,
     },
     200: {
       description: "Thundery outbreaks in nearby",
-      icon: "wsymbol_0016_thundery_showers",
+      icon: icon17,
     },
     176: {
       description: "Patchy rain nearby",
-      icon: "wsymbol_0009_light_rain_showers",
+      icon: icon2,
     },
   },
   snow: {
     395: {
       description: "Moderate or heavy snow in area with thunder",
-      icon: "wsymbol_0012_heavy_snow_showers",
+      icon: icon16,
     },
     392: {
       description: "Patchy light snow in area with thunder",
-      icon: "wsymbol_0016_thundery_showers",
+      icon: icon16,
     },
     377: {
       description: "Moderate or heavy showers of ice pellets",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon8,
     },
     374: {
       description: "Light showers of ice pellets",
-      icon: "wsymbol_0013_sleet_showers",
+      icon: icon8,
     },
     371: {
       description: "Moderate or heavy snow showers",
-      icon: "wsymbol_0012_heavy_snow_showers",
+      icon: icon11,
     },
     368: {
       description: "Light snow showers",
-      icon: "wsymbol_0011_light_snow_showers",
+      icon: icon12,
     },
     365: {
       description: "Moderate or heavy sleet showers",
-      icon: "wsymbol_0013_sleet_showers",
+      icon: icon11,
     },
     362: {
       description: "Light sleet showers",
-      icon: "wsymbol_0013_sleet_showers",
+      icon: icon12,
     },
     350: {
       description: "Ice pellets",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon8,
     },
     329: {
       description: "Patchy moderate snow",
-      icon: "wsymbol_0020_cloudy_with_heavy_snow",
+      icon: icon11,
     },
     326: {
       description: "Light snow",
-      icon: "wsymbol_0011_light_snow_showers",
+      icon: icon12,
     },
     323: {
       description: "Patchy light snow",
-      icon: "wsymbol_0011_light_snow_showers",
+      icon: icon12,
     },
     320: {
       description: "Moderate or heavy sleet",
-      icon: "wsymbol_0019_cloudy_with_light_snow",
+      icon: icon12,
     },
     317: {
       description: "Light sleet",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon12,
     },
     260: {
       description: "Freezing fog",
-      icon: "wsymbol_0007_fog",
+      icon: icon3,
     },
     230: {
       description: "Blizzard",
-      icon: "wsymbol_0020_cloudy_with_heavy_snow",
+      icon: icon11,
     },
     227: {
       description: "Blowing snow",
-      icon: "wsymbol_0019_cloudy_with_light_snow",
+      icon: icon12,
     },
     185: {
       description: "Patchy freezing drizzle nearby",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon12,
     },
     182: {
       description: "Patchy sleet nearby",
-      icon: "wsymbol_0021_cloudy_with_sleet",
+      icon: icon12,
     },
     179: {
       description: "Patchy snow nearby",
-      icon: "wsymbol_0013_sleet_showers",
+      icon: icon12,
     },
   },
 };
