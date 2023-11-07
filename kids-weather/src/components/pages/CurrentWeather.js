@@ -11,6 +11,7 @@ const CurrentWeather = () => {
     localStorage.getItem("recentLocation") || "Stockholm"
   );
   const [isLoading, setIsLoading] = useState(true);
+  const [isFahrenheit, setIsFahrenheit] = useState(true);
 
   const handleLocationChange = (e) => {
     const newLocation = e.target.value;
@@ -18,10 +19,24 @@ const CurrentWeather = () => {
     localStorage.setItem("recentLocation", newLocation);
   };
 
+  const handleTemperatureToggle = () => {
+    setIsFahrenheit(!isFahrenheit);
+  };
+
+  const convertTemperature = (temperature) => {
+    let convertedTemperature;
+    if (isFahrenheit) {
+      convertedTemperature = temperature;
+    } else {
+      convertedTemperature = ((temperature - 32) * 5) / 9;
+    }
+    return convertedTemperature.toFixed(0);
+  };
+
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const accessKey = "92b8a00626b8571760808a5112afad7e";
+        const accessKey = "SECRET";
         const weatherResponse = await axios.get(
           `http://api.weatherstack.com/current?access_key=${accessKey}&query=${location}`
         );
@@ -80,6 +95,9 @@ const CurrentWeather = () => {
       <div>
         <div>
           <input type="text" value={location} onChange={handleLocationChange} />
+          <button onClick={handleTemperatureToggle}>
+            {isFahrenheit ? "Switch to Fahrenheit" : "Switch to Celsius"}
+          </button>
         </div>
         {isLoading ? (
           <p>Loading...</p>
@@ -96,7 +114,10 @@ const CurrentWeather = () => {
                 </Col>
                 <Col className={styles.Conditions}>
                   <p>{weatherData.weather_descriptions}</p>
-                  <p>{weatherData.temperature}°C</p>
+                  <p>
+                    {convertTemperature(weatherData.temperature)}
+                    {isFahrenheit ? "°C" : "°F"}
+                  </p>
                 </Col>
               </Row>
               <Row>
