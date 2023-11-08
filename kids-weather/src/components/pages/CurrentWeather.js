@@ -21,7 +21,7 @@ const CurrentWeather = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const accessKey = "SECRET";
+        const accessKey = process.env.REACT_APP_WEATHER_API_KEY;
         const weatherResponse = await axios.get(
           `http://api.weatherstack.com/current?access_key=${accessKey}&query=${location}`
         );
