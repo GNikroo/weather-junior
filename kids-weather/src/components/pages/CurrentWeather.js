@@ -17,7 +17,7 @@ const CurrentWeather = () => {
     setLocation(newLocation);
     localStorage.setItem("recentLocation", newLocation);
   };
-
+  //
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
