@@ -1,0 +1,19 @@
+.Section {
+    padding: 1rem;
+    background-color: transparent;
+    margin: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 1rem;
+}
+
+.Brand {
+    justify-content: flex-start;
+}
+
+.Link {}
+
+.Dropdown {
+    justify-content: flex-end;
+}
