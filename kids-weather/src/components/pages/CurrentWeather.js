@@ -11,7 +11,7 @@ const CurrentWeather = () => {
     localStorage.getItem("recentLocation") || "Stockholm"
   );
   const [isLoading, setIsLoading] = useState(true);
-  const [isFahrenheit, setIsFahrenheit] = useState(true);
+  const [isFahrenheit, setIsFahrenheit] = useState(false);
 
   const handleLocationChange = (e) => {
     const newLocation = e.target.value;
@@ -26,10 +26,11 @@ const CurrentWeather = () => {
   const convertTemperature = (temperature) => {
     let convertedTemperature;
     if (isFahrenheit) {
-      convertedTemperature = temperature;
+      convertedTemperature = (temperature * 9) / 5 + 32;
     } else {
-      convertedTemperature = ((temperature - 32) * 5) / 9;
+      convertedTemperature = temperature;
     }
+
     return convertedTemperature.toFixed(0);
   };
 
@@ -43,6 +44,12 @@ const CurrentWeather = () => {
 
         if (weatherResponse.data && weatherResponse.data.current) {
           console.log("Weather Data:", weatherResponse.data);
+          const currentTemperature = weatherResponse.data.current.temperature;
+          console.log("Temperature in Celsius:", currentTemperature);
+          console.log(
+            "Temperature in Fahrenheit:",
+            convertTemperature(currentTemperature)
+          );
 
           setWeatherData(weatherResponse.data.current);
         } else {
@@ -76,11 +83,11 @@ const CurrentWeather = () => {
         selectedOutfit = outfits.snowy;
       }
     } else if (weather_code && weatherConditions.dry[weather_code]) {
-      if (temperature > 17) {
+      if (temperature >= 20) {
         selectedOutfit = outfits.warm;
       } else if (temperature >= 7 && temperature <= 12) {
         selectedOutfit = outfits.windy;
-      } else if (temperature > 12 && temperature < 17) {
+      } else if (temperature > 12 && temperature < 20) {
         selectedOutfit = outfits.chilly;
       } else if (temperature < 7) selectedOutfit = outfits.snowy;
     } else if (weather_code && weatherConditions.snow[weather_code]) {
@@ -96,7 +103,7 @@ const CurrentWeather = () => {
         <div>
           <input type="text" value={location} onChange={handleLocationChange} />
           <button onClick={handleTemperatureToggle}>
-            {isFahrenheit ? "Switch to Fahrenheit" : "Switch to Celsius"}
+            {isFahrenheit ? "Switch to Celsius" : "Switch to Fahrenheit"}
           </button>
         </div>
         {isLoading ? (
@@ -116,7 +123,7 @@ const CurrentWeather = () => {
                   <p>{weatherData.weather_descriptions}</p>
                   <p>
                     {convertTemperature(weatherData.temperature)}
-                    {isFahrenheit ? "°C" : "°F"}
+                    {isFahrenheit ? "°F" : "°C"}
                   </p>
                 </Col>
               </Row>
