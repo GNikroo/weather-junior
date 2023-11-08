@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { outfits, weatherConditions } from "../../data";
-import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/CurrentWeather.module.css";
 import appStyles from "../../App.module.css";
 
@@ -11,7 +11,6 @@ const CurrentWeather = () => {
     localStorage.getItem("recentLocation") || "Stockholm"
   );
   const [isLoading, setIsLoading] = useState(true);
-  const [isFahrenheit, setIsFahrenheit] = useState(false);
 
   const handleLocationChange = (e) => {
     const newLocation = e.target.value;
@@ -19,25 +18,10 @@ const CurrentWeather = () => {
     localStorage.setItem("recentLocation", newLocation);
   };
 
-  const handleTemperatureToggle = () => {
-    setIsFahrenheit(!isFahrenheit);
-  };
-
-  const convertTemperature = (temperature) => {
-    let convertedTemperature;
-    if (isFahrenheit) {
-      convertedTemperature = (temperature * 9) / 5 + 32;
-    } else {
-      convertedTemperature = temperature;
-    }
-
-    return convertedTemperature.toFixed(0);
-  };
-
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const accessKey = "SECRET";
+        const accessKey = "856af3dde678e995ec1b1ffff4bf2fbe";
         const weatherResponse = await axios.get(
           `http://api.weatherstack.com/current?access_key=${accessKey}&query=${location}`
         );
@@ -90,41 +74,41 @@ const CurrentWeather = () => {
   };
 
   return (
-    <Container className={`${appStyles.Section} text-center`}>
+    <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
       <Row className="pt-2">
-        <Col className="input-group has-validation">
+        <Col
+          className={`${styles.InputContainer} d-flex input-group text-center mb-1`}
+        >
+          <span
+            className={`${styles.InputSearch} input-group-text`}
+            id="basic-addon1"
+          >
+            🔎
+          </span>
           <input
             type="text"
             value={location}
             onChange={handleLocationChange}
-            className={styles.Input}
+            className={`${styles.Input}`}
+            aria-describedby="basic-addon1"
           />
         </Col>
-        <Col>
-          <Button variant="light" onClick={handleTemperatureToggle}>
-            {isFahrenheit ? "Celsius" : "Fahrenheit"}
-          </Button>
-        </Col>
-
         {isLoading ? (
           <p>Loading...</p>
         ) : (
           weatherData && (
             <Container className={appStyles.Section}>
-              <Row>
+              <Row className="align-items-center">
                 <Col>
                   <Image
                     src={getWeatherIcon(weatherData.weather_code)}
-                    height={100}
                     alt="Weather Icon"
+                    className={styles.Icon}
                   />
                 </Col>
                 <Col className={styles.Conditions}>
-                  <p>{weatherData.weather_descriptions}</p>
-                  <p>
-                    {convertTemperature(weatherData.temperature)}
-                    {isFahrenheit ? "°F" : "°C"}
-                  </p>
+                  <p className="mb-0">{weatherData.weather_descriptions}</p>
+                  <p className="mb-0">{weatherData.temperature}°C</p>
                 </Col>
               </Row>
               <Row>
