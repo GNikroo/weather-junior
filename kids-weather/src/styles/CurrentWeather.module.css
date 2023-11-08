@@ -2,3 +2,9 @@
     font-weight: 600;
     font-size: 2em;
 }
+
+.Input {
+    padding: .3rem 1rem;
+    border-radius: 10px;
+    border-width: 1px;
+}

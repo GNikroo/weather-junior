@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { outfits, weatherConditions } from "../../data";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/CurrentWeather.module.css";
 import appStyles from "../../App.module.css";
 
@@ -43,14 +43,6 @@ const CurrentWeather = () => {
         );
 
         if (weatherResponse.data && weatherResponse.data.current) {
-          console.log("Weather Data:", weatherResponse.data);
-          const currentTemperature = weatherResponse.data.current.temperature;
-          console.log("Temperature in Celsius:", currentTemperature);
-          console.log(
-            "Temperature in Fahrenheit:",
-            convertTemperature(currentTemperature)
-          );
-
           setWeatherData(weatherResponse.data.current);
         } else {
           console.error("Weather data not found");
@@ -98,14 +90,22 @@ const CurrentWeather = () => {
   };
 
   return (
-    <Container className={`${styles.Section} text-center`}>
-      <div>
-        <div>
-          <input type="text" value={location} onChange={handleLocationChange} />
-          <button onClick={handleTemperatureToggle}>
-            {isFahrenheit ? "Switch to Celsius" : "Switch to Fahrenheit"}
-          </button>
-        </div>
+    <Container className={`${appStyles.Section} text-center`}>
+      <Row className="pt-2">
+        <Col className="input-group has-validation">
+          <input
+            type="text"
+            value={location}
+            onChange={handleLocationChange}
+            className={styles.Input}
+          />
+        </Col>
+        <Col>
+          <Button variant="light" onClick={handleTemperatureToggle}>
+            {isFahrenheit ? "Celsius" : "Fahrenheit"}
+          </Button>
+        </Col>
+
         {isLoading ? (
           <p>Loading...</p>
         ) : (
@@ -144,7 +144,7 @@ const CurrentWeather = () => {
             </Container>
           )
         )}
-      </div>
+      </Row>
     </Container>
   );
 };
