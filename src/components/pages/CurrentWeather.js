@@ -23,7 +23,7 @@ const CurrentWeather = () => {
       try {
         const accessKey = process.env.REACT_APP_WEATHER_API_KEY;
         const weatherResponse = await axios.get(
-          `http://api.weatherstack.com/current?access_key=${accessKey}&query=${location}`
+          `https://api.weatherstack.com/current?access_key=${accessKey}&query=${location}`
         );
 
         if (weatherResponse.data && weatherResponse.data.current) {
