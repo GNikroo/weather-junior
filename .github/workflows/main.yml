@@ -5,15 +5,13 @@ on:
     branches:
       - develop
   workflow_dispatch:
-  
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Development Code
         uses: actions/checkout@v4
-        with:
-          path: ./  # Set the path to the root of the repository
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
