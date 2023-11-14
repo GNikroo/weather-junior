@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useDeferredValue } from "react";
 import axios from "axios";
 import { outfits, weatherConditions } from "../../data";
 import { Col, Container, Image, Row } from "react-bootstrap";
@@ -7,23 +7,47 @@ import appStyles from "../../App.module.css";
 
 const CurrentWeather = () => {
   const [weatherData, setWeatherData] = useState(null);
-  const [location, setLocation] = useState(
-    localStorage.getItem("recentLocation") || "Stockholm"
+  const [inputLocation, setInputLocation] = useState(
+    () => localStorage.getItem("recentLocation") || "Stockholm, Sweden"
   );
+  const [locationData, setLocationData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLocationChange = (e) => {
     const newLocation = e.target.value;
-    setLocation(newLocation);
+    setInputLocation(newLocation);
     localStorage.setItem("recentLocation", newLocation);
   };
-  //
+
+  useEffect(() => {
+    const fetchLocationData = async () => {
+      try {
+        console.log("hej");
+        const accessKey = process.env.REACT_APP_WEATHER_API_KEY;
+        const weatherResponse = await axios.get(
+          `https://api.weatherstack.com/current?access_key=${accessKey}&query=${inputLocation}`
+        );
+
+        if (weatherResponse.data && weatherResponse.data.location) {
+          setLocationData(weatherResponse.data.location);
+        } else {
+          console.error("Location data not found");
+        }
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchLocationData();
+  }, [inputLocation, setLocationData]);
+
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
         const accessKey = process.env.REACT_APP_WEATHER_API_KEY;
         const weatherResponse = await axios.get(
-          `https://api.weatherstack.com/current?access_key=${accessKey}&query=${location}`
+          `https://api.weatherstack.com/current?access_key=${accessKey}&query=${inputLocation}`
         );
 
         if (weatherResponse.data && weatherResponse.data.current) {
@@ -38,7 +62,7 @@ const CurrentWeather = () => {
       }
     };
     fetchWeatherData();
-  }, [location]);
+  }, [inputLocation]);
 
   const getWeatherIcon = (code) => {
     for (const condition of Object.values(weatherConditions)) {
@@ -87,7 +111,7 @@ const CurrentWeather = () => {
           </span>
           <input
             type="text"
-            value={location}
+            value={inputLocation}
             onChange={handleLocationChange}
             className={`${styles.Input}`}
             aria-describedby="basic-addon1"
@@ -110,6 +134,10 @@ const CurrentWeather = () => {
                   <p className="mb-0">{weatherData.weather_descriptions}</p>
                   <p className="mb-0">{weatherData.temperature}°C</p>
                 </Col>
+              </Row>
+              <Row>
+                {locationData.name}, {locationData.region},{" "}
+                {locationData.country}
               </Row>
               <Row>
                 <Col>
