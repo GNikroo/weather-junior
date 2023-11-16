@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useDeferredValue } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { outfits, weatherConditions } from "../../data";
 import { Col, Container, Image, Row } from "react-bootstrap";
@@ -22,7 +22,6 @@ const CurrentWeather = () => {
   useEffect(() => {
     const fetchLocationData = async () => {
       try {
-        console.log("hej");
         const accessKey = process.env.REACT_APP_WEATHER_API_KEY;
         const weatherResponse = await axios.get(
           `https://api.weatherstack.com/current?access_key=${accessKey}&query=${inputLocation}`
