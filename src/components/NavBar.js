@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <Container>
       <Navbar className={styles.Section}>
-        <Link to="/today" className={`${styles.Brand} text-decoration-none`}>
+        <Link to="/" className={`${styles.Brand} text-decoration-none`}>
           Weather Jr.
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

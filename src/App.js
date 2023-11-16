@@ -7,6 +7,8 @@ import HistoricalWeather from "./components/pages/HistoricalWeather";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
+import LandingPage from "./components/pages/LandingPage";
+import GetDressed from "./components/pages/GetDressed";
 
 function App() {
   return (
@@ -16,8 +18,10 @@ function App() {
         <div className={styles.Content}>
           <Routes>
             <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<CurrentWeather />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/today" element={<CurrentWeather />} />
             <Route path="/historical" element={<HistoricalWeather />} />
+            <Route path="/getdressed" element={<GetDressed />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
