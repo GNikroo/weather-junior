@@ -1,10 +1,11 @@
-.Icon {
-    height: 100px;
+.ConditionsContainer {
+    width: 20rem;
+    align-items: center;
 }
 
 .Conditions {
     font-weight: 600;
-    font-size: 1.3em;
+    font-size: 1rem;
 }
 
 .InputContainer {
@@ -24,6 +25,27 @@
     border-width: 0.5px;
 }
 
+.Row {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.SuggestionsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.SuggestionItem {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.SuggestionItem:hover {
+    background-color: #f0f0f0;
+}
+
+
 @media only screen and (min-height: 1000px) {
     .Section {
         padding-top: 5rem;
@@ -37,6 +59,6 @@
 
     .Conditions {
         font-weight: 600;
-        font-size: 1em;
+        font-size: 1rem;
     }
 }

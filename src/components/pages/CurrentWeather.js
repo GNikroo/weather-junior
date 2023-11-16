@@ -121,12 +121,12 @@ const CurrentWeather = () => {
         ) : (
           weatherData && (
             <Container className={appStyles.Section}>
-              <Row className="align-items-center">
+              <Row className={`${styles.ConditionsContainer}`}>
                 <Col>
                   <Image
                     src={getWeatherIcon(weatherData.weather_code)}
                     alt="Weather Icon"
-                    className={styles.Icon}
+                    height={65}
                   />
                 </Col>
                 <Col className={styles.Conditions}>
@@ -134,11 +134,7 @@ const CurrentWeather = () => {
                   <p className="mb-0">{weatherData.temperature}°C</p>
                 </Col>
               </Row>
-              <Row>
-                {locationData.name}, {locationData.region},{" "}
-                {locationData.country}
-              </Row>
-              <Row>
+              <Row className="py-1">
                 <Col>
                   <Image
                     src={
@@ -147,10 +143,14 @@ const CurrentWeather = () => {
                         weatherData.weather_code
                       ).image
                     }
-                    height={350}
+                    height={300}
                     alt="Outfit"
                   />
                 </Col>
+              </Row>
+              <Row className={`${styles.Row}`}>
+                {locationData.name}, {locationData.region},{" "}
+                {locationData.country}
               </Row>
             </Container>
           )
