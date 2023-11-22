@@ -121,6 +121,12 @@ const CurrentWeather = () => {
         ) : (
           weatherData && (
             <Container className={appStyles.Section}>
+              <Row className="justify-content-center">
+                <div className={styles.Location}>
+                  {locationData.name}, {locationData.region},
+                  {locationData.country}
+                </div>
+              </Row>
               <Row className={`${styles.ConditionsContainer}`}>
                 <Col>
                   <Image
@@ -147,10 +153,6 @@ const CurrentWeather = () => {
                     alt="Outfit"
                   />
                 </Col>
-              </Row>
-              <Row className={`${styles.Row}`}>
-                {locationData.name}, {locationData.region},{" "}
-                {locationData.country}
               </Row>
             </Container>
           )
