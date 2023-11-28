@@ -123,8 +123,15 @@ const CurrentWeather = () => {
             <Container className={appStyles.Section}>
               <Row className="justify-content-center">
                 <div className={styles.Location}>
-                  {locationData.name}, {locationData.region},
-                  {locationData.country}
+                  {locationData.country === "United States of America" ? (
+                    <p>
+                      {locationData.name}, {locationData.region}
+                    </p>
+                  ) : (
+                    <p>
+                      {locationData.name}, {locationData.country}
+                    </p>
+                  )}
                 </div>
               </Row>
               <Row className={`${styles.ConditionsContainer}`}>
