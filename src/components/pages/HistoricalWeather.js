@@ -4,6 +4,7 @@ import { outfits, weatherConditions } from "../../data";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/HistoricalWeather.module.css";
 import appStyles from "../../App.module.css";
+import image from "../../assets/clothing/Child.png";
 
 const HistoricalWeather = () => {
   const [historicalWeatherData, setHistoricalWeatherData] = useState(null);
@@ -130,58 +131,65 @@ const HistoricalWeather = () => {
             className={styles.Input}
           />
         </Col>
+      </Row>
+      <Row>
+        <Col>
+          {historicalWeatherData ? (
+            <Image
+              src={
+                getOutfit(
+                  historicalWeatherData.temperature,
+                  historicalWeatherData.weather_code
+                ).image
+              }
+              height={300}
+              alt="Outfit"
+            />
+          ) : (
+            <Image src={image} height={300} alt="Outfit" />
+          )}
+        </Col>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
           historicalWeatherData && (
-            <Container className={appStyles.Section}>
+            <div className="d-block">
               <Row className="justify-content-center">
                 <div className={styles.Location}>
                   {locationData.country === "United States of America" ? (
                     <p>
-                      On {inputDate} in {locationData.name},{" "}
-                      {locationData.region} it was{" "}
-                      {historicalWeatherData.temperature} °C.
+                      On <span className="fw-bold">{inputDate}</span> in{" "}
+                      <span className="fw-bold">
+                        {locationData.name}, {locationData.region}
+                      </span>{" "}
+                      it was
                     </p>
                   ) : (
-                    <p>
-                      On {inputDate} in {locationData.name},{" "}
-                      {locationData.country} it was{" "}
-                      {historicalWeatherData.temperature} °C.
+                    <p className="fw-bold">
+                      {inputDate} in {locationData.name}, {locationData.country}
                     </p>
                   )}
                 </div>
               </Row>
               <Row className={`${styles.ConditionsContainer}`}>
-                <Col>
+                <Col className="d-flex justify-content-end">
                   <Image
                     src={getWeatherIcon(historicalWeatherData.weather_code)}
                     alt="Weather Icon"
                     height={65}
                   />
                 </Col>
-                <Col className={styles.Conditions}>
-                  <p className="mb-0">
+                <Col className={`${styles.Conditions} m-auto`}>
+                  <p className="d-flex mb-0">
+                    {historicalWeatherData.weather_descriptions}
+                  </p>
+                  <p className="d-flex mb-0">
                     {historicalWeatherData.temperature}
                     °C
                   </p>
                 </Col>
               </Row>
-              <Row className="py-1">
-                <Col>
-                  <Image
-                    src={
-                      getOutfit(
-                        historicalWeatherData.temperature,
-                        historicalWeatherData.weather_code
-                      ).image
-                    }
-                    height={300}
-                    alt="Outfit"
-                  />
-                </Col>
-              </Row>
-            </Container>
+            </div>
           )
         )}
       </Row>
