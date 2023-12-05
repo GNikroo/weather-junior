@@ -1,0 +1,70 @@
+.ConditionsContainer {
+    width: auto;
+    align-items: center;
+}
+
+.Conditions {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.InputContainer {
+    width: 19rem;
+    justify-content: center;
+}
+
+.InputSearch {
+    border: none;
+    background-color: #fff;
+}
+
+.Input {
+    text-align: center;
+    padding-left: 0.1rem;
+    border: none;
+    border-radius: 10px;
+    border-width: 0.5px;
+}
+
+.InputDate {
+    padding: .3rem .1rem;
+}
+
+.Location {
+    color: #593b52;
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.SuggestionsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.SuggestionItem {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.SuggestionItem:hover {
+    background-color: #f0f0f0;
+}
+
+
+@media only screen and (min-height: 1000px) {
+    .Section {
+        padding-top: 5rem;
+    }
+}
+
+@media only screen and (max-height: 590px) {
+    .Icon {
+        height: 70px;
+    }
+
+    .Conditions {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+}

@@ -106,7 +106,7 @@ const HistoricalWeather = () => {
 
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
-      <Row className="pt-2">
+      <Row>
         <Col
           className={`${styles.InputContainer} d-flex input-group text-center mb-1`}
         >
@@ -123,16 +123,18 @@ const HistoricalWeather = () => {
             className={`${styles.Input}`}
             aria-describedby="basic-addon1"
           />
+        </Col>
+        <Col>
           <input
             type="date"
             value={inputDate}
             min="2009-01-01"
             onChange={handleInputDateChange}
-            className={styles.Input}
+            className={`${styles.Input} ${styles.InputDate}`}
           />
         </Col>
       </Row>
-      <Row>
+      <Row className="py-1 m-auto">
         <Col>
           {historicalWeatherData ? (
             <Image

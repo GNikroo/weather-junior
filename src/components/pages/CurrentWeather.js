@@ -4,6 +4,7 @@ import { outfits, weatherConditions } from "../../data";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/CurrentWeather.module.css";
 import appStyles from "../../App.module.css";
+import image from "../../assets/clothing/Child.png";
 
 const CurrentWeather = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -98,7 +99,7 @@ const CurrentWeather = () => {
 
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
-      <Row className="pt-2">
+      <Row>
         <Col
           className={`${styles.InputContainer} d-flex input-group text-center mb-1`}
         >
@@ -116,11 +117,27 @@ const CurrentWeather = () => {
             aria-describedby="basic-addon1"
           />
         </Col>
+      </Row>
+      <Row className="py-1 m-auto">
+        <Col>
+          {weatherData ? (
+            <Image
+              src={
+                getOutfit(weatherData.temperature, weatherData.weather_code)
+                  .image
+              }
+              height={300}
+              alt="Outfit"
+            />
+          ) : (
+            <Image src={image} height={300} alt="Outfit" />
+          )}
+        </Col>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
           weatherData && (
-            <Container className={appStyles.Section}>
+            <div className="d-block">
               <Row className="justify-content-center">
                 <div className={styles.Location}>
                   {locationData.country === "United States of America" ? (
@@ -135,33 +152,24 @@ const CurrentWeather = () => {
                 </div>
               </Row>
               <Row className={`${styles.ConditionsContainer}`}>
-                <Col>
+                <Col className="d-flex justify-content-end">
                   <Image
                     src={getWeatherIcon(weatherData.weather_code)}
                     alt="Weather Icon"
                     height={65}
                   />
                 </Col>
-                <Col className={styles.Conditions}>
-                  <p className="mb-0">{weatherData.weather_descriptions}</p>
-                  <p className="mb-0">{weatherData.temperature}°C</p>
+                <Col className={`${styles.Conditions} m-auto`}>
+                  <p className="d-flex mb-0">
+                    {weatherData.weather_descriptions}
+                  </p>
+                  <p className="d-flex mb-0">
+                    {weatherData.temperature}
+                    °C
+                  </p>
                 </Col>
               </Row>
-              <Row className="py-1">
-                <Col>
-                  <Image
-                    src={
-                      getOutfit(
-                        weatherData.temperature,
-                        weatherData.weather_code
-                      ).image
-                    }
-                    height={300}
-                    alt="Outfit"
-                  />
-                </Col>
-              </Row>
-            </Container>
+            </div>
           )
         )}
       </Row>
