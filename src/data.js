@@ -30,7 +30,6 @@ import clothing1 from "./assets/clothing/Chilly/Chilly2.png";
 import clothing2 from "./assets/clothing/Raingear/Raingear2.png";
 import clothing3 from "./assets/clothing/Snowgear/Snowgear2.png";
 import clothing4 from "./assets/clothing/Summer/Summer2.png";
-import clothing5 from "./assets/clothing/Windy/Windy2.png";
 import acc1 from "./assets/clothing/Chilly/Chilly3.png";
 import acc2 from "./assets/clothing/Raingear/Raingear3.png";
 import acc3 from "./assets/clothing/Snowgear/Snowgear3.png";
@@ -48,7 +47,7 @@ export const outfits = {
 
 export const buildableOutfits = {
   head: [head1, head2, head3, head4, head5],
-  clothing: [clothing1, clothing2, clothing3, clothing4, clothing5],
+  clothing: [clothing1, clothing2, clothing3, clothing4],
   accessories: [acc1, acc2, acc3, acc4, acc5],
   outfits: [img1, img2, img3, img4, img5, img6],
 };
