@@ -21,6 +21,21 @@ import icon16 from "./assets/icons/storm2.png";
 import icon17 from "./assets/icons/storm3.png";
 import icon18 from "./assets/icons/sun.png";
 import icon19 from "./assets/icons/windy.png";
+import head1 from "./assets/clothing/Chilly/Chilly1.png";
+import head2 from "./assets/clothing/Raingear/Raingear1.png";
+import head3 from "./assets/clothing/Snowgear/Snowgear1.png";
+import head4 from "./assets/clothing/Summer/Summer1.png";
+import head5 from "./assets/clothing/Windy/Windy1.png";
+import clothing1 from "./assets/clothing/Chilly/Chilly2.png";
+import clothing2 from "./assets/clothing/Raingear/Raingear2.png";
+import clothing3 from "./assets/clothing/Snowgear/Snowgear2.png";
+import clothing4 from "./assets/clothing/Summer/Summer2.png";
+import clothing5 from "./assets/clothing/Windy/Windy2.png";
+import acc1 from "./assets/clothing/Chilly/Chilly3.png";
+import acc2 from "./assets/clothing/Raingear/Raingear3.png";
+import acc3 from "./assets/clothing/Snowgear/Snowgear3.png";
+import acc4 from "./assets/clothing/Summer/Summer3.png";
+import acc5 from "./assets/clothing/Windy/Windy3.png";
 
 export const outfits = {
   default: { image: img1, alt: "child dressed in pajamas" },
@@ -29,6 +44,13 @@ export const outfits = {
   warm: { image: img2, alt: "child dressed for heat" },
   chilly: { image: img3, alt: "child dressed for chill" },
   snowy: { image: img5, alt: "child dressed for cold" },
+};
+
+export const buildableOutfits = {
+  head: [head1, head2, head3, head4, head5],
+  clothing: [clothing1, clothing2, clothing3, clothing4, clothing5],
+  accessories: [acc1, acc2, acc3, acc4, acc5],
+  outfits: [img1, img2, img3, img4, img5, img6],
 };
 
 export const weatherConditions = {
