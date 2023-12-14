@@ -5,8 +5,10 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/CurrentWeather.module.css";
 import appStyles from "../../App.module.css";
 import image from "../../assets/clothing/Child.png";
+import ScreenSizeChecker from "../ScreenSizeChecker";
 
 const CurrentWeather = () => {
+  const { isSmallScreen } = ScreenSizeChecker();
   const [weatherData, setWeatherData] = useState(null);
   const [inputLocation, setInputLocation] = useState(
     () => localStorage.getItem("recentLocation") || "Stockholm, Sweden"
@@ -126,11 +128,15 @@ const CurrentWeather = () => {
                 getOutfit(weatherData.temperature, weatherData.weather_code)
                   .image
               }
-              height={300}
+              style={{ height: isSmallScreen ? 300 : 500 }}
               alt="Outfit"
             />
           ) : (
-            <Image src={image} height={300} alt="Outfit" />
+            <Image
+              src={image}
+              style={{ height: isSmallScreen ? 300 : 500 }}
+              alt="Outfit"
+            />
           )}
         </Col>
         {isLoading ? (
