@@ -1,0 +1,17 @@
+.ItemCol {
+    overflow: visible;
+    height: 19vh;
+    border-radius: 50px;
+    max-width: 11rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.Section {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 75vh;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
