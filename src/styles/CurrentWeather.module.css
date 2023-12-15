@@ -32,22 +32,6 @@
     font-size: 0.9rem;
 }
 
-.SuggestionsList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.SuggestionItem {
-    padding: 8px;
-    cursor: pointer;
-}
-
-.SuggestionItem:hover {
-    background-color: #f0f0f0;
-}
-
-
 @media only screen and (min-height: 1000px) {
     .Section {
         padding-top: 5rem;
