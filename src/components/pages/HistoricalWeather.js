@@ -6,49 +6,23 @@ import styles from "../../styles/HistoricalWeather.module.css";
 import appStyles from "../../App.module.css";
 import image from "../../assets/clothing/Child.png";
 import ScreenSizeChecker from "../ScreenSizeChecker";
+import useWeatherStore from "../hooks/useWeatherStore";
 
 const HistoricalWeather = () => {
+  const { inputLocation, locationData, fetchLocationData } = useWeatherStore();
   const { isSmallScreen } = ScreenSizeChecker();
   const [historicalWeatherData, setHistoricalWeatherData] = useState(null);
-  const [inputLocation, setInputLocation] = useState(
-    () => localStorage.getItem("recentLocation") || "Stockholm, Sweden"
-  );
-  const [locationData, setLocationData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
   const [inputDate, setInputDate] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleLocationChange = (e) => {
-    const newLocation = e.target.value;
-    setInputLocation(newLocation);
-    localStorage.setItem("recentLocation", newLocation);
-  };
+  useEffect(() => {
+    fetchLocationData();
+  }, [inputLocation, fetchLocationData]);
 
   const handleInputDateChange = (e) => {
     const newDate = e.target.value;
     setInputDate(newDate);
   };
-
-  useEffect(() => {
-    const fetchLocationData = async () => {
-      try {
-        const accessKey = process.env.REACT_APP_WEATHER_API_KEY;
-        const weatherResponse = await axios.get(
-          `https://api.weatherstack.com/current?access_key=${accessKey}&query=${inputLocation}`
-        );
-
-        if (weatherResponse.data && weatherResponse.data.location) {
-          setLocationData(weatherResponse.data.location);
-        } else {
-          console.error("Location data not found");
-        }
-      } catch (error) {
-        console.error("Error fetching location data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchLocationData();
-  }, [inputLocation, setLocationData]);
 
   useEffect(() => {
     const fetchHistoricalWeatherData = async () => {
@@ -108,23 +82,9 @@ const HistoricalWeather = () => {
 
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
-      <Row>
-        <Col
-          className={`${styles.InputContainer} d-flex input-group text-center mb-1`}
-        >
-          <span
-            className={`${styles.InputSearch} input-group-text`}
-            id="basic-addon1"
-          >
-            🔎
-          </span>
-          <input
-            type="text"
-            value={inputLocation}
-            onChange={handleLocationChange}
-            className={`${styles.Input}`}
-            aria-describedby="basic-addon1"
-          />
+      <Row className="align-items-center">
+        <Col className="d-flex">
+          <p className="m-0">Choose a date:</p>
         </Col>
         <Col>
           <input

@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { outfits, weatherConditions } from "../../data";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/CurrentWeather.module.css";
 import appStyles from "../../App.module.css";
 import image from "../../assets/clothing/Child.png";
 import ScreenSizeChecker from "../ScreenSizeChecker";
-import useWeather from "../hooks/useWeather";
+import useWeatherStore from "../hooks/useWeatherStore";
 
 const CurrentWeather = () => {
-  const { isSmallScreen } = ScreenSizeChecker();
   const {
-    handleLocationChange,
     weatherData,
     inputLocation,
     locationData,
     isLoading,
-  } = useWeather();
+    fetchWeatherData,
+    fetchLocationData,
+  } = useWeatherStore();
+  const { isSmallScreen } = ScreenSizeChecker();
+
+  useEffect(() => {
+    fetchWeatherData();
+  }, [inputLocation, fetchWeatherData]);
+
+  useEffect(() => {
+    fetchLocationData();
+  }, [inputLocation, fetchLocationData]);
 
   const getOutfit = (temperature, weather_code) => {
     let selectedOutfit = outfits.default;
@@ -52,25 +61,6 @@ const CurrentWeather = () => {
 
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
-      <Row>
-        <Col
-          className={`${styles.InputContainer} d-flex input-group text-center mb-1`}
-        >
-          <span
-            className={`${styles.InputSearch} input-group-text`}
-            id="basic-addon1"
-          >
-            🔎
-          </span>
-          <input
-            type="text"
-            value={inputLocation}
-            onChange={handleLocationChange}
-            className={`${styles.Input}`}
-            aria-describedby="basic-addon1"
-          />
-        </Col>
-      </Row>
       <Row className="py-1 m-auto">
         <Col>
           {weatherData ? (

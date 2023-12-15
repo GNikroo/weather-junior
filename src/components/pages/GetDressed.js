@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Carousel, Col, Container, Image, Row } from "react-bootstrap";
-import { buildableOutfits } from "../../data";
+import { outfits, buildableOutfits, weatherConditions } from "../../data";
 import styles from "../../styles/GetDressed.module.css";
 import ScreenSizeChecker from "../ScreenSizeChecker";
+import useWeatherStore from "../hooks/useWeatherStore";
 
 const ItemCarousel = ({ images, onItemSelected, isSmallScreen }) => {
   const handleSelect = (selectedIndex) => {
@@ -97,6 +98,14 @@ const OutfitImage = ({
 };
 
 const ItemCarousels = () => {
+  const {
+    weatherData,
+    inputLocation,
+    locationData,
+    isLoading,
+    fetchWeatherData,
+    fetchLocationData,
+  } = useWeatherStore();
   const { isSmallScreen } = ScreenSizeChecker();
   const headImages = buildableOutfits.head;
   const clothingImages = buildableOutfits.clothing;
@@ -107,11 +116,88 @@ const ItemCarousels = () => {
   const [clothingOverlayIndex, setClothingOverlayIndex] = useState(null);
   const [accessoriesOverlayIndex, setAccessoriesOverlayIndex] = useState(null);
 
+  useEffect(() => {
+    fetchWeatherData();
+  }, [inputLocation, fetchWeatherData]);
+
+  useEffect(() => {
+    fetchLocationData();
+  }, [inputLocation, fetchLocationData]);
+
+  const getWeatherIcon = (code) => {
+    for (const condition of Object.values(weatherConditions)) {
+      if (condition[code] && condition[code].hasOwnProperty("icon")) {
+        return condition[code].icon;
+      }
+    }
+    return "default-icon";
+  };
+
+  const getOutfit = (temperature, weather_code) => {
+    let selectedOutfit = outfits.default;
+
+    if (weather_code && weatherConditions.wet[weather_code]) {
+      if (temperature >= 5 && temperature <= 25) {
+        selectedOutfit = outfits.rainy;
+      } else if (temperature < 5) {
+        selectedOutfit = outfits.snowy;
+      }
+    } else if (weather_code && weatherConditions.dry[weather_code]) {
+      if (temperature >= 20) {
+        selectedOutfit = outfits.warm;
+      } else if (temperature >= 7 && temperature <= 12) {
+        selectedOutfit = outfits.windy;
+      } else if (temperature > 12 && temperature < 20) {
+        selectedOutfit = outfits.chilly;
+      } else if (temperature < 7) selectedOutfit = outfits.snowy;
+    } else if (weather_code && weatherConditions.snow[weather_code]) {
+      selectedOutfit = outfits.snowy;
+    }
+
+    return selectedOutfit;
+  };
+
   return (
     <Container className={styles.Section}>
-      <Row>
-        <Col className="text-center py-4">Weather Conditions</Col>
-      </Row>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        weatherData && (
+          <div className="d-block">
+            <Row
+              className={`${styles.Location} d-flex align-items-center text-center`}
+            >
+              {locationData.country === "United States of America" ? (
+                <p>
+                  {locationData.name}, {locationData.region}
+                </p>
+              ) : (
+                <p>
+                  {locationData.name}, {locationData.country}
+                </p>
+              )}
+            </Row>
+            <Row>
+              <Col className="d-flex justify-content-end">
+                <Image
+                  src={getWeatherIcon(weatherData.weather_code)}
+                  alt="Weather Icon"
+                  height={50}
+                />
+              </Col>
+              <Col className={`${styles.Conditions} m-auto`}>
+                <p className="d-flex mb-0">
+                  {weatherData.weather_descriptions}
+                </p>
+                <p className="d-flex mb-0">
+                  {weatherData.temperature}
+                  °C
+                </p>
+              </Col>
+            </Row>
+          </div>
+        )
+      )}
       <Row className="d-flex px-4 align-items-center justify-content-center">
         <Col
           xs={5}
