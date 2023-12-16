@@ -7,6 +7,14 @@ import useWeatherStore from "./hooks/useWeatherStore";
 
 const NavBar = () => {
   const { handleLocationChange, inputLocation } = useWeatherStore();
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.target.blur();
+    }
+  };
+
   return (
     <Container>
       <Navbar className={styles.Section}>
@@ -29,6 +37,7 @@ const NavBar = () => {
             value={inputLocation}
             onChange={handleLocationChange}
             className={`${styles.Input}`}
+            onKeyDown={handleKeyDown}
             aria-describedby="basic-addon1"
           />
         </Col>
