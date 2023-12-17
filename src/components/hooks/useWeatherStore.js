@@ -14,6 +14,10 @@ const useWeatherStore = create(
         const newLocation = e.target.value;
         set({ inputLocation: newLocation });
       },
+      handleMapClick: (lat, lng) => {
+        const newLocation = `${lat},${lng}`;
+        set({ inputLocation: newLocation });
+      },
       fetchWeatherData: async () => {
         const state = get();
         try {

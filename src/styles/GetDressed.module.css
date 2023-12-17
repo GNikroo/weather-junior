@@ -1,8 +1,5 @@
 .ItemCol {
-    overflow: visible;
     height: 19vh;
-    border-radius: 50px;
-    max-width: 11rem;
     justify-content: center;
     align-items: center;
 }
@@ -14,6 +11,30 @@
     min-height: 75vh;
     align-items: center;
     margin-bottom: 0.5rem;
+}
+
+.Carousel {
+    width: 12rem;
+}
+
+.Carousel a {
+    text-decoration: none;
+}
+
+.Instructions {
+    margin: auto;
+    padding: 0.6rem 1rem;
+    width: fit-content;
+    border-radius: 50px;
+    /* background: linear-gradient(145deg, #f0f0f0, #dedddd); */
+    box-shadow: 6px 6px 12px #cacaca,
+        -6px 0px 12px #f6f6f6;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.Image {
+    width: fit-content;
 }
 
 .ConditionsContainer {
@@ -64,5 +85,16 @@
     .Conditions {
         font-weight: 600;
         font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .Carousel {
+        width: 7rem;
+    }
+
+    .Instructions {
+        font-size: 1rem;
+        padding: 0.3rem 1rem;
     }
 }

@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { outfits, weatherConditions } from "../../data";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import { Col, Container, Image, Row, Modal, Button } from "react-bootstrap";
 import styles from "../../styles/HistoricalWeather.module.css";
 import appStyles from "../../App.module.css";
 import image from "../../assets/clothing/Child.png";
-import ScreenSizeChecker from "../ScreenSizeChecker";
+import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 import useWeatherStore from "../hooks/useWeatherStore";
+import useOutfit from "../hooks/useOutfit";
+
+const ErrorModal = ({ errorMessage, onClose }) => {
+  return (
+    <Modal show={!!errorMessage} onHide={onClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>You've gone too far!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>{errorMessage}</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
 
 const HistoricalWeather = () => {
   const { inputLocation, locationData, fetchLocationData } = useWeatherStore();
@@ -14,6 +32,9 @@ const HistoricalWeather = () => {
   const [historicalWeatherData, setHistoricalWeatherData] = useState(null);
   const [inputDate, setInputDate] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const { getOutfit, getWeatherIcon } = useOutfit();
 
   useEffect(() => {
     fetchLocationData();
@@ -21,7 +42,18 @@ const HistoricalWeather = () => {
 
   const handleInputDateChange = (e) => {
     const newDate = e.target.value;
-    setInputDate(newDate);
+    const minDate = "2009-01-01";
+    if (newDate < minDate) {
+      setInputDate(minDate);
+      setErrorMessage("Please select a date on or after 2009-01-01");
+    } else {
+      setErrorMessage("");
+      setInputDate(newDate);
+    }
+  };
+
+  const closeModal = () => {
+    setErrorMessage("");
   };
 
   useEffect(() => {
@@ -48,43 +80,11 @@ const HistoricalWeather = () => {
     fetchHistoricalWeatherData();
   }, [inputLocation, inputDate]);
 
-  const getWeatherIcon = (code) => {
-    for (const condition of Object.values(weatherConditions)) {
-      if (condition[code] && condition[code].hasOwnProperty("icon")) {
-        return condition[code].icon;
-      }
-    }
-    return "default-icon";
-  };
-
-  const getOutfit = (temperature, weather_code) => {
-    let selectedOutfit = outfits.default;
-    if (weather_code && weatherConditions.wet[weather_code]) {
-      if (temperature >= 5 && temperature <= 25) {
-        selectedOutfit = outfits.rainy;
-      } else if (temperature < 5) {
-        selectedOutfit = outfits.snowy;
-      }
-    } else if (weather_code && weatherConditions.dry[weather_code]) {
-      if (temperature >= 20) {
-        selectedOutfit = outfits.warm;
-      } else if (temperature >= 7 && temperature <= 12) {
-        selectedOutfit = outfits.windy;
-      } else if (temperature > 12 && temperature < 20) {
-        selectedOutfit = outfits.chilly;
-      } else if (temperature < 7) selectedOutfit = outfits.snowy;
-    } else if (weather_code && weatherConditions.snow[weather_code]) {
-      selectedOutfit = outfits.snowy;
-    }
-
-    return selectedOutfit;
-  };
-
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
-      <Row className="align-items-center">
-        <Col className="d-flex">
-          <p className="m-0">Choose a date:</p>
+      <Row className="py-2 align-items-center">
+        <Col className="d-flex p-0">
+          <p className="m-0 text-nowrap">Choose a date:</p>
         </Col>
         <Col>
           <input
@@ -94,6 +94,9 @@ const HistoricalWeather = () => {
             onChange={handleInputDateChange}
             className={`${styles.Input} ${styles.InputDate}`}
           />
+          {errorMessage && (
+            <ErrorModal errorMessage={errorMessage} onClose={closeModal} />
+          )}
         </Col>
       </Row>
       <Row className="py-1 m-auto">
@@ -124,19 +127,14 @@ const HistoricalWeather = () => {
             <div className="d-block">
               <Row className="justify-content-center">
                 <div className={styles.Location}>
-                  {locationData.country === "United States of America" ? (
-                    <p>
-                      On <span className="fw-bold">{inputDate}</span> in{" "}
-                      <span className="fw-bold">
-                        {locationData.name}, {locationData.region}
-                      </span>{" "}
-                      it was
-                    </p>
-                  ) : (
-                    <p className="fw-bold">
-                      {inputDate} in {locationData.name}, {locationData.country}
-                    </p>
-                  )}
+                  <p className="fw-bold">
+                    {inputDate} in {locationData.name},{" "}
+                    {locationData.country === "United States of America" ? (
+                      <span>{locationData.region}</span>
+                    ) : (
+                      <span>{locationData.country}</span>
+                    )}
+                  </p>
                 </div>
               </Row>
               <Row className={`${styles.ConditionsContainer}`}>

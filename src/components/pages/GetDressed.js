@@ -1,31 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { Carousel, Col, Container, Image, Row } from "react-bootstrap";
-import { outfits, buildableOutfits, weatherConditions } from "../../data";
+import { buildableOutfits, weatherConditions } from "../../data";
 import styles from "../../styles/GetDressed.module.css";
-import ScreenSizeChecker from "../ScreenSizeChecker";
+import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 import useWeatherStore from "../hooks/useWeatherStore";
+// import useOutfit from "../hooks/useOutfit";
 
 const ItemCarousel = ({ images, onItemSelected, isSmallScreen }) => {
   const handleSelect = (selectedIndex) => {
     onItemSelected(selectedIndex);
   };
 
+  const customIcon = {
+    fontSize: "1rem",
+    color: "black",
+    textDecoration: "none",
+  };
+
   return (
-    <Col className={styles.ItemCol}>
+    <Col className={`${styles.ItemCol} d-flex`}>
       <Carousel
+        className={styles.Carousel}
         interval={null}
         indicators={false}
         defaultActiveIndex={0}
         touch={true}
         onSelect={handleSelect}
         variant="dark"
+        prevIcon={<i className="fa-solid fa-caret-left" style={customIcon}></i>}
+        nextIcon={
+          <i className="fa-solid fa-caret-right" style={customIcon}></i>
+        }
       >
         {images.map((imageUrl, index) => (
           <Carousel.Item key={index}>
             <Image
               className="d-block m-auto"
               src={imageUrl}
-              style={{ height: isSmallScreen ? 150 : 200 }}
+              style={{ height: isSmallScreen ? 125 : 200 }}
             />
           </Carousel.Item>
         ))}
@@ -58,6 +70,8 @@ const OutfitImage = ({
   isSmallScreen,
 }) => {
   const { head, clothing, accessories } = buildableOutfits;
+
+  // const { getOutfit, getWeatherIcon } = useOutfit();
 
   return (
     <Col>
@@ -133,30 +147,6 @@ const ItemCarousels = () => {
     return "default-icon";
   };
 
-  const getOutfit = (temperature, weather_code) => {
-    let selectedOutfit = outfits.default;
-
-    if (weather_code && weatherConditions.wet[weather_code]) {
-      if (temperature >= 5 && temperature <= 25) {
-        selectedOutfit = outfits.rainy;
-      } else if (temperature < 5) {
-        selectedOutfit = outfits.snowy;
-      }
-    } else if (weather_code && weatherConditions.dry[weather_code]) {
-      if (temperature >= 20) {
-        selectedOutfit = outfits.warm;
-      } else if (temperature >= 7 && temperature <= 12) {
-        selectedOutfit = outfits.windy;
-      } else if (temperature > 12 && temperature < 20) {
-        selectedOutfit = outfits.chilly;
-      } else if (temperature < 7) selectedOutfit = outfits.snowy;
-    } else if (weather_code && weatherConditions.snow[weather_code]) {
-      selectedOutfit = outfits.snowy;
-    }
-
-    return selectedOutfit;
-  };
-
   return (
     <Container className={styles.Section}>
       {isLoading ? (
@@ -167,15 +157,14 @@ const ItemCarousels = () => {
             <Row
               className={`${styles.Location} d-flex align-items-center text-center`}
             >
-              {locationData.country === "United States of America" ? (
-                <p>
-                  {locationData.name}, {locationData.region}
-                </p>
-              ) : (
-                <p>
-                  {locationData.name}, {locationData.country}
-                </p>
-              )}
+              <p className="fw-bold">
+                {locationData.name},{" "}
+                {locationData.country === "United States of America" ? (
+                  <span>{locationData.region}</span>
+                ) : (
+                  <span>{locationData.country}</span>
+                )}
+              </p>
             </Row>
             <Row>
               <Col className="d-flex justify-content-end">
@@ -194,6 +183,11 @@ const ItemCarousels = () => {
                   °C
                 </p>
               </Col>
+            </Row>
+            <Row className="text-center py-2 py-sm-4">
+              <p className={styles.Instructions}>
+                How should we dress for the weather?
+              </p>
             </Row>
           </div>
         )

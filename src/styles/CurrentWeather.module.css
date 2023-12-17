@@ -4,8 +4,10 @@
 }
 
 .Conditions {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
+    text-align: left;
+    padding-bottom: 1rem;
 }
 
 .InputContainer {
@@ -27,7 +29,7 @@
 }
 
 .Location {
-    color: #593b52;
+    /* color: #593b52; */
     font-weight: 800;
     font-size: 0.9rem;
 }

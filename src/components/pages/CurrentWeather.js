@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { outfits, weatherConditions } from "../../data";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/CurrentWeather.module.css";
 import appStyles from "../../App.module.css";
 import image from "../../assets/clothing/Child.png";
-import ScreenSizeChecker from "../ScreenSizeChecker";
+import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 import useWeatherStore from "../hooks/useWeatherStore";
+import useOutfit from "../hooks/useOutfit";
+import Map from "../Map";
 
 const CurrentWeather = () => {
   const {
@@ -16,6 +17,9 @@ const CurrentWeather = () => {
     fetchWeatherData,
     fetchLocationData,
   } = useWeatherStore();
+
+  const { getOutfit, getWeatherIcon } = useOutfit();
+
   const { isSmallScreen } = ScreenSizeChecker();
 
   useEffect(() => {
@@ -25,39 +29,6 @@ const CurrentWeather = () => {
   useEffect(() => {
     fetchLocationData();
   }, [inputLocation, fetchLocationData]);
-
-  const getOutfit = (temperature, weather_code) => {
-    let selectedOutfit = outfits.default;
-
-    if (weather_code && weatherConditions.wet[weather_code]) {
-      if (temperature >= 5 && temperature <= 25) {
-        selectedOutfit = outfits.rainy;
-      } else if (temperature < 5) {
-        selectedOutfit = outfits.snowy;
-      }
-    } else if (weather_code && weatherConditions.dry[weather_code]) {
-      if (temperature >= 20) {
-        selectedOutfit = outfits.warm;
-      } else if (temperature >= 7 && temperature <= 12) {
-        selectedOutfit = outfits.windy;
-      } else if (temperature > 12 && temperature < 20) {
-        selectedOutfit = outfits.chilly;
-      } else if (temperature < 7) selectedOutfit = outfits.snowy;
-    } else if (weather_code && weatherConditions.snow[weather_code]) {
-      selectedOutfit = outfits.snowy;
-    }
-
-    return selectedOutfit;
-  };
-
-  const getWeatherIcon = (code) => {
-    for (const condition of Object.values(weatherConditions)) {
-      if (condition[code] && condition[code].hasOwnProperty("icon")) {
-        return condition[code].icon;
-      }
-    }
-    return "default-icon";
-  };
 
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
@@ -87,23 +58,22 @@ const CurrentWeather = () => {
             <div className="d-block">
               <Row className="justify-content-center">
                 <div className={styles.Location}>
-                  {locationData.country === "United States of America" ? (
-                    <p>
-                      {locationData.name}, {locationData.region}
-                    </p>
-                  ) : (
-                    <p>
-                      {locationData.name}, {locationData.country}
-                    </p>
-                  )}
+                  <p className="fw-bold">
+                    {locationData.name},{" "}
+                    {locationData.country === "United States of America" ? (
+                      <span>{locationData.region}</span>
+                    ) : (
+                      <span>{locationData.country}</span>
+                    )}
+                  </p>
                 </div>
               </Row>
               <Row className={`${styles.ConditionsContainer}`}>
-                <Col className="d-flex justify-content-end">
+                <Col className="d-flex justify-content-end align-self-baseline">
                   <Image
                     src={getWeatherIcon(weatherData.weather_code)}
                     alt="Weather Icon"
-                    height={65}
+                    height={50}
                   />
                 </Col>
                 <Col className={`${styles.Conditions} m-auto`}>
@@ -116,6 +86,7 @@ const CurrentWeather = () => {
                   </p>
                 </Col>
               </Row>
+              <Map />
             </div>
           )
         )}
