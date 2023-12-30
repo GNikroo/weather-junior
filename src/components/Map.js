@@ -9,8 +9,8 @@ const mapContainerStyle = {
   height: "15rem",
 };
 const center = {
-  lat: 0, // default latitude
-  lng: 0, // default longitude
+  lat: 0,
+  lng: 0,
 };
 
 const Map = () => {
@@ -20,10 +20,30 @@ const Map = () => {
     libraries,
   });
   const [map, setMap] = useState(null);
+  const [marker, setMarker] = useState(null);
+
   const handleMapClickEvent = (e) => {
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
     handleMapClick(lat, lng);
+    if (marker) {
+      marker.setMap(null);
+    }
+
+    const newMarker = new window.google.maps.Marker({
+      position: { lat, lng },
+      map: map,
+    });
+    setMarker(newMarker);
+  };
+
+  const addMarker = (location) => {
+    if (map) {
+      new window.google.maps.Marker({
+        position: location,
+        map: map,
+      });
+    }
   };
 
   const onLoad = useCallback(function callback(map) {
