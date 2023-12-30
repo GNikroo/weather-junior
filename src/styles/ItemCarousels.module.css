@@ -1,0 +1,100 @@
+.ItemCol {
+    height: 19vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.Section {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 75vh;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.Carousel {
+    width: 12rem;
+}
+
+.Carousel a {
+    text-decoration: none;
+}
+
+.Instructions {
+    margin: auto;
+    padding: 0.6rem 1rem;
+    width: fit-content;
+    border-radius: 50px;
+    /* background: linear-gradient(145deg, #f0f0f0, #dedddd); */
+    box-shadow: 6px 6px 12px #cacaca,
+        -6px 0px 12px #f6f6f6;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.Image {
+    width: fit-content;
+}
+
+.ConditionsContainer {
+    width: auto;
+    align-items: center;
+}
+
+.Conditions {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.InputContainer {
+    width: 19rem;
+    justify-content: center;
+}
+
+.InputSearch {
+    border: none;
+    background-color: #fff;
+}
+
+.Input {
+    text-align: center;
+    padding-left: 0.1rem;
+    border: none;
+    border-radius: 10px;
+    border-width: 0.5px;
+}
+
+.Location {
+    color: #593b52;
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+@media only screen and (min-height: 1000px) {
+    .Section {
+        padding-top: 5rem;
+    }
+}
+
+@media only screen and (max-height: 590px) {
+    .Icon {
+        height: 70px;
+    }
+
+    .Conditions {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .Carousel {
+        width: 7rem;
+    }
+
+    .Instructions {
+        font-size: 1rem;
+        padding: 0.3rem 1rem;
+    }
+}
