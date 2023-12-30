@@ -6,7 +6,7 @@ import styles from "../styles/Map.module.css";
 const libraries = ["places"];
 const mapContainerStyle = {
   width: "25rem",
-  height: "15rem",
+  height: "10rem",
 };
 const center = {
   lat: 0,
@@ -35,15 +35,6 @@ const Map = () => {
       map: map,
     });
     setMarker(newMarker);
-  };
-
-  const addMarker = (location) => {
-    if (map) {
-      new window.google.maps.Marker({
-        position: location,
-        map: map,
-      });
-    }
   };
 
   const onLoad = useCallback(function callback(map) {
