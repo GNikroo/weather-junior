@@ -12,45 +12,44 @@ const Map = () => {
     libraries,
   });
   const { isSmallScreen } = ScreenSizeChecker();
-  const [map, setMap] = useState(null);
-  const [marker, setMarker] = useState(null);
+
+  const [center, setCenter] = useState({
+    lat: 0,
+    lng: 0,
+  });
+
+  const [markers, setMarkers] = useState([]);
 
   const mapContainerStyle = isSmallScreen
     ? { height: "10rem", width: "20rem" }
     : { height: "20rem", width: "25rem" };
 
-  const center = {
-    lat: 0,
-    lng: 0,
-  };
-
   const handleMapClickEvent = (e) => {
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
     handleMapClick(lat, lng);
-    if (marker) {
-      marker.setMap(null);
-    }
 
-    const newMarker = new window.google.maps.Marker({
-      position: { lat, lng },
-      map: map,
-    });
-    setMarker(newMarker);
+    setMarkers([]);
+
+    const newMarker = {
+      lat,
+      lng,
+    };
+
+    setCenter(newMarker);
+
+    setMarkers([newMarker]);
   };
 
   const onLoad = useCallback(function callback(map) {
     const worldBounds = new window.google.maps.LatLngBounds(
-      new window.google.maps.LatLng(85, -180), // North-west corner of the world
-      new window.google.maps.LatLng(-85, 180) // South-east corner of the world
+      new window.google.maps.LatLng(85, -180),
+      new window.google.maps.LatLng(-85, 180)
     );
     map.fitBounds(worldBounds);
-    setMap(map);
   }, []);
 
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
-  }, []);
+  const onUnmount = useCallback(function callback() {}, []);
 
   if (loadError) {
     return <div>Error loading maps</div>;
@@ -70,7 +69,9 @@ const Map = () => {
         onUnmount={onUnmount}
         onClick={handleMapClickEvent}
       >
-        {map && <Marker position={center} />}
+        {markers.map((marker, index) => (
+          <Marker key={index} position={marker} />
+        ))}
       </GoogleMap>
     </div>
   );
