@@ -54,7 +54,8 @@ const CurrentWeather = () => {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          weatherData && (
+          weatherData &&
+          locationData && (
             <div className="d-block">
               <Row className="justify-content-center">
                 <div className={styles.Location}>
