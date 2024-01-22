@@ -21,8 +21,8 @@ const Map = () => {
   const [markers, setMarkers] = useState([]);
 
   const mapContainerStyle = isSmallScreen
-    ? { height: "10rem", width: "20rem" }
-    : { height: "20rem", width: "25rem" };
+    ? { height: "10rem", width: "17rem" }
+    : { height: "16rem", width: "23rem" };
 
   const handleMapClickEvent = (e) => {
     const lat = e.latLng.lat();
