@@ -3,17 +3,10 @@ import { Container, Navbar, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import useWeatherStore from "./hooks/useWeatherStore";
+import useWeather from "../components/hooks/useWeatherStore";
 
 const NavBar = () => {
-  const { handleLocationChange, inputLocation } = useWeatherStore();
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      event.target.blur();
-    }
-  };
+  const { handleLocationChange, inputLocation } = useWeather();
 
   return (
     <Container>
@@ -37,7 +30,6 @@ const NavBar = () => {
             value={inputLocation}
             onChange={handleLocationChange}
             className={`${styles.Input}`}
-            onKeyDown={handleKeyDown}
             aria-describedby="basic-addon1"
           />
         </Col>

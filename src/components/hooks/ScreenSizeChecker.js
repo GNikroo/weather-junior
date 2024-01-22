@@ -5,7 +5,8 @@ const ScreenSizeChecker = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
+      const updatedIsSmallScreen = window.innerWidth < 768;
+      setIsSmallScreen(updatedIsSmallScreen);
     };
 
     handleResize();
