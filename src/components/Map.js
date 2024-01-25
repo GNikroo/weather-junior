@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import useWeatherStore from "./hooks/useWeatherStore";
-import ScreenSizeChecker from "../components/hooks/ScreenSizeChecker";
+import useWeatherStore from "../hooks/useWeatherStore";
+import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 
 const libraries = ["places"];
 

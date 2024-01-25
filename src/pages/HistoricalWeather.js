@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Col, Container, Image, Row, Modal, Button } from "react-bootstrap";
-import styles from "../../styles/HistoricalWeather.module.css";
-import appStyles from "../../App.module.css";
-import image from "../../assets/clothing/Child.png";
+import styles from "../styles/HistoricalWeather.module.css";
+import appStyles from "../App.module.css";
+import image from "../assets/clothing/Child.png";
 import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 import useWeatherStore from "../hooks/useWeatherStore";
 import useOutfit from "../hooks/useOutfit";

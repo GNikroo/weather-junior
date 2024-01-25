@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import styles from "../../styles/LandingPage.module.css";
-import appStyles from "../../App.module.css";
+import styles from "../styles/LandingPage.module.css";
+import appStyles from "../App.module.css";
 
 const LandingPage = () => {
   const navigate = useNavigate();

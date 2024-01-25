@@ -1,4 +1,4 @@
-import { outfits, weatherConditions } from "../../data";
+import { outfits, weatherConditions } from "../data";
 
 const useOutfit = () => {
   const getOutfit = (temperature, weather_code) => {

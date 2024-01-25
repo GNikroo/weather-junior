@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import styles from "../../styles/CurrentWeather.module.css";
-import appStyles from "../../App.module.css";
-import image from "../../assets/clothing/Child.png";
+import styles from "../styles/CurrentWeather.module.css";
+import appStyles from "../App.module.css";
+import image from "../assets/clothing/Child.png";
 import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 import useWeatherStore from "../hooks/useWeatherStore";
 import useOutfit from "../hooks/useOutfit";
-import Map from "../Map";
+import Map from "../components/Map";
 
 const CurrentWeather = () => {
   const {

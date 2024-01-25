@@ -1,14 +1,14 @@
 import styles from "./App.module.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import CurrentWeather from "./components/pages/CurrentWeather";
+import CurrentWeather from "./pages/CurrentWeather";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import HistoricalWeather from "./components/pages/HistoricalWeather";
+import HistoricalWeather from "./pages/HistoricalWeather";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
-import LandingPage from "./components/pages/LandingPage";
-import GetDressed from "./components/pages/GetDressed";
+import LandingPage from "./pages/LandingPage";
+import GetDressed from "./pages/GetDressed";
 
 function App() {
   return (

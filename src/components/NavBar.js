@@ -3,7 +3,7 @@ import { Container, Navbar, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import useWeather from "../components/hooks/useWeatherStore";
+import useWeather from "../hooks/useWeatherStore";
 
 const NavBar = () => {
   const { handleLocationChange, inputLocation } = useWeather();
