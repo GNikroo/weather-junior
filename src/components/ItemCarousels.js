@@ -5,7 +5,7 @@ import styles from "../styles/ItemCarousels.module.css";
 import ItemCarousel from "./ItemCarousel";
 import OutfitImage from "./OutfitImage";
 
-const ItemCarousels = ({ isSmallScreen, weatherData, locationData }) => {
+const ItemCarousels = ({ isSmallScreen }) => {
   const headImages = buildableOutfits.head;
   const clothingImages = buildableOutfits.clothing;
   const accessoriesImages = buildableOutfits.accessories;
@@ -17,13 +17,8 @@ const ItemCarousels = ({ isSmallScreen, weatherData, locationData }) => {
 
   return (
     <Container className={styles.Section}>
-      <Row>
-        <Col
-          xs={5}
-          sm={4}
-          md={5}
-          className="d-flex flex-column align-items-center p-0"
-        >
+      <Row className="align-items-center justify-content-center">
+        <Col md={5} className="d-flex flex-column align-items-center p-0">
           <ItemCarousel
             images={headImages}
             onItemSelected={setHeadOverlayIndex}
@@ -40,12 +35,7 @@ const ItemCarousels = ({ isSmallScreen, weatherData, locationData }) => {
             isSmallScreen={isSmallScreen}
           />
         </Col>
-        <Col
-          xs={7}
-          sm={4}
-          md={7}
-          className="d-flex flex-column align-items-center p-0"
-        >
+        <Col md={7} className="d-flex flex-column align-items-center p-0">
           <OutfitImage
             images={outfitImages}
             headIndex={headOverlayIndex}

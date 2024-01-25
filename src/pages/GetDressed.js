@@ -26,7 +26,7 @@ const GetDressed = () => {
       ) : (
         weatherData &&
         locationData && (
-          <Row className="d-flex px-4 align-items-center justify-content-center">
+          <Row className="d-flex px-4">
             <ItemCarousels
               isSmallScreen={isSmallScreen}
               weatherData={weatherData}

@@ -6,11 +6,17 @@ const OverlayImage = ({ src, top, start, isSmallScreen }) => {
   const overlayImageStyle = {
     top,
     left: start,
-    height: isSmallScreen ? 300 : 500,
+    height: 500,
+    display: isSmallScreen ? "none" : "block",
   };
+
+  const overlayImageClassName = isSmallScreen
+    ? "d-none"
+    : "position-absolute top-50 start-50 translate-middle";
+
   return (
     <Image
-      className="position-absolute top-50 start-50 translate-middle"
+      className={overlayImageClassName}
       src={src}
       style={overlayImageStyle}
       alt="Overlay Image"
@@ -33,7 +39,7 @@ const OutfitImage = ({
         <Image
           className="d-block m-auto"
           src={images[0]}
-          style={{ height: isSmallScreen ? 300 : 500 }}
+          style={{ height: 500 }}
           alt="Outfit Image"
         />
         {headIndex !== null && (
