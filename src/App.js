@@ -1,12 +1,12 @@
 import styles from "./App.module.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CurrentWeather from "./pages/CurrentWeather";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 import HistoricalWeather from "./pages/HistoricalWeather";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import NotFound from "./components/NotFound";
+import NotFound from "./pages/NotFound";
 import LandingPage from "./pages/LandingPage";
 // import GetDressed from "./pages/GetDressed";
 
