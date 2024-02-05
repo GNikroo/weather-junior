@@ -7,6 +7,7 @@ import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 import useWeatherStore from "../hooks/useWeatherStore";
 import useOutfit from "../hooks/useOutfit";
 import Map from "../components/Map";
+import Search from "../components/Search";
 
 const CurrentWeather = () => {
   const {
@@ -32,7 +33,8 @@ const CurrentWeather = () => {
 
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
-      <Row className="py-1 m-auto">
+      <Row className="m-auto">
+        <Search />
         <Col>
           {weatherData ? (
             <Image

@@ -7,6 +7,7 @@ import image from "../assets/clothing/Child.png";
 import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 import useWeatherStore from "../hooks/useWeatherStore";
 import useOutfit from "../hooks/useOutfit";
+import Search from "../components/Search";
 
 const ErrorModal = ({ errorMessage, onClose }) => {
   return (
@@ -82,6 +83,9 @@ const HistoricalWeather = () => {
 
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
+      <Row>
+        <Search />
+      </Row>
       <Row className="py-2 align-items-center">
         <Col className="d-flex p-0">
           <p className="m-0 text-nowrap">Choose a date:</p>

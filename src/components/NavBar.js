@@ -1,56 +1,57 @@
-import React from "react";
-import { Container, Navbar, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import useWeather from "../hooks/useWeatherStore";
 
 const NavBar = () => {
-  const { handleLocationChange, inputLocation } = useWeather();
+  const [expanded, setExpanded] = useState(false);
+
+  const handleNavClose = () => setExpanded(false);
 
   return (
     <Container>
-      <Navbar className={styles.Section}>
-        <Col xs={4} sm={5} md={6}>
-          <Link to="/" className={`${styles.Brand} text-decoration-none`}>
-            Weather Jr.
-          </Link>
-        </Col>
-        <Col
-          className={`${styles.InputContainer} d-flex input-group text-center`}
+      <Navbar
+        className={styles.Section}
+        expand="lg"
+        expanded={expanded}
+        onToggle={setExpanded}
+      >
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          className={`${styles.Brand} text-decoration-none`}
         >
-          <span
-            className={`${styles.InputSearch} input-group-text`}
-            id="basic-addon1"
-          >
-            🔎
-          </span>
-          <input
-            type="text"
-            value={inputLocation}
-            onChange={handleLocationChange}
-            className={`${styles.Input}`}
-            aria-describedby="basic-addon1"
-          />
-        </Col>
-        <Col xs={1}>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse className={styles.Dropdown} id="basic-navbar-nav">
-            <NavDropdown title="" id="basic-nav-dropdown">
-              <Link to="/about" className={styles.Links}>
-                About
-              </Link>
-              <br></br>
-              <Link to="/today" className={styles.Links}>
-                Current Weather
-              </Link>
-              <br></br>
-              <Link to="/past" className={styles.Links}>
-                Historical Weather
-              </Link>
-            </NavDropdown>
-          </Navbar.Collapse>
-        </Col>
+          Weather Jr.
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link
+              as={Link}
+              to="/about"
+              className={styles.Links}
+              onClick={handleNavClose}
+            >
+              About
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/today"
+              className={styles.Links}
+              onClick={handleNavClose}
+            >
+              Current Weather
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/historical"
+              className={styles.Links}
+              onClick={handleNavClose}
+            >
+              Historical Weather
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     </Container>
   );
