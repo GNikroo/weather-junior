@@ -15,6 +15,22 @@ const ItemCarousels = ({ isSmallScreen }) => {
   const [clothingOverlayIndex, setClothingOverlayIndex] = useState(null);
   const [accessoriesOverlayIndex, setAccessoriesOverlayIndex] = useState(null);
 
+  // const topOverlayStyle = {
+  //   top: "-75%",
+  //   left: "-25%",
+  //   width: 50,
+  //   display: isSmallScreen ? "block" : "none",
+  //   zIndex: isSmallScreen ? 1 : 0,
+  // };
+
+  // const bottomOverlayStyle = {
+  //   // top: "-75%",
+  //   // left: "-25%",
+  //   width: 0,
+  //   display: isSmallScreen ? "block" : "none",
+  //   zIndex: isSmallScreen ? 1 : 0,
+  // };
+
   return (
     <Container className={styles.Section}>
       <Row className="align-items-center justify-content-center">
@@ -23,16 +39,19 @@ const ItemCarousels = ({ isSmallScreen }) => {
             images={headImages}
             onItemSelected={setHeadOverlayIndex}
             isSmallScreen={isSmallScreen}
+            // style={topOverlayStyle}
           />
           <ItemCarousel
             images={clothingImages}
             onItemSelected={setClothingOverlayIndex}
             isSmallScreen={isSmallScreen}
+            // style={bottomOverlayStyle}
           />
           <ItemCarousel
             images={accessoriesImages}
             onItemSelected={setAccessoriesOverlayIndex}
             isSmallScreen={isSmallScreen}
+            // style={bottomOverlayStyle}
           />
         </Col>
         <Col md={7} className="d-flex flex-column align-items-center p-0">

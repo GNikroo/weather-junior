@@ -59,14 +59,18 @@ const CurrentWeather = () => {
             <div className="d-block">
               <Row className="justify-content-center">
                 <div className={styles.Location}>
-                  <p className="fw-bold">
-                    {locationData.name},{" "}
-                    {locationData.country === "United States of America" ? (
-                      <span>{locationData.region}</span>
-                    ) : (
-                      <span>{locationData.country}</span>
-                    )}
-                  </p>
+                  {locationData.name ? (
+                    <p className="fw-bold">
+                      {locationData.name},{" "}
+                      {locationData.country === "United States of America" ? (
+                        <span>{locationData.region}</span>
+                      ) : (
+                        <span>{locationData.country}</span>
+                      )}
+                    </p>
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
               </Row>
               <Row className={`${styles.ConditionsContainer}`}>

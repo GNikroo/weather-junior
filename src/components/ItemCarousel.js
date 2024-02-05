@@ -7,14 +7,6 @@ const ItemCarousel = ({ images, onItemSelected, isSmallScreen }) => {
     onItemSelected(selectedIndex);
   };
 
-  const overlayImageStyle = {
-    top: "-75%",
-    left: "-25%",
-    height: 500,
-    display: isSmallScreen ? "block" : "none",
-    zIndex: isSmallScreen ? 1 : 0,
-  };
-
   return (
     <Col className={styles.ItemCol}>
       {isSmallScreen ? (
@@ -26,15 +18,13 @@ const ItemCarousel = ({ images, onItemSelected, isSmallScreen }) => {
           touch={true}
           onSelect={handleSelect}
           variant="dark"
-          className={`${styles.SmallScreenCarousel} position-absolute top-50 start-50 translate-middle`}
         >
           {images.map((imageUrl, index) => (
-            <Carousel.Item key={index} className="position-relative">
-              <Image
-                style={overlayImageStyle}
-                src={imageUrl}
-                alt="Overlay Image"
-              />
+            <Carousel.Item
+              key={index}
+              className={`${styles.Carousel} position-relative`}
+            >
+              <Image src={imageUrl} alt="Overlay Image" />
             </Carousel.Item>
           ))}
         </Carousel>

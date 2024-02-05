@@ -6,7 +6,7 @@ const OverlayImage = ({ src, top, start, isSmallScreen }) => {
   const overlayImageStyle = {
     top,
     left: start,
-    height: 500,
+    width: 280,
     display: isSmallScreen ? "none" : "block",
   };
 
@@ -46,7 +46,7 @@ const OutfitImage = ({
           <OverlayImage
             src={head[headIndex]}
             top="-75%"
-            start="-25%"
+            // start="-25%"
             isSmallScreen={isSmallScreen}
           />
         )}
@@ -54,7 +54,7 @@ const OutfitImage = ({
           <OverlayImage
             src={clothing[clothingIndex]}
             top="0"
-            start="-25%"
+            // start="-25%"
             isSmallScreen={isSmallScreen}
           />
         )}
@@ -62,7 +62,7 @@ const OutfitImage = ({
           <OverlayImage
             src={accessories[accessoriesIndex]}
             top="75%"
-            start="-25%"
+            // start="-25%"
             isSmallScreen={isSmallScreen}
           />
         )}

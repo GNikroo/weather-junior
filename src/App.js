@@ -8,7 +8,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import LandingPage from "./pages/LandingPage";
-import GetDressed from "./pages/GetDressed";
+// import GetDressed from "./pages/GetDressed";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/today" element={<CurrentWeather />} />
             <Route path="/historical" element={<HistoricalWeather />} />
-            <Route path="/getdressed" element={<GetDressed />} />
+            {/* <Route path="/getdressed" element={<GetDressed />} /> */}
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
