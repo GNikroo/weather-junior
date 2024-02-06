@@ -76,7 +76,7 @@ const Map = () => {
     <div className="d-flex align-items-center justify-content-center">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom
+        zoom={1}
         gestureHandling="greedy"
         center={center}
         onLoad={onLoad}
