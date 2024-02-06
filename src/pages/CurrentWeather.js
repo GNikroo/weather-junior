@@ -33,9 +33,9 @@ const CurrentWeather = () => {
 
   return (
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
-      <Row className="m-auto">
+      <Row className={`${styles.RowContainer} m-auto`}>
         <Search />
-        <Col>
+        <Col className="py-1 py-lg-4">
           {weatherData ? (
             <Image
               src={
@@ -58,43 +58,40 @@ const CurrentWeather = () => {
         ) : (
           weatherData &&
           locationData && (
-            <div className="d-block">
-              <Row className="justify-content-center">
-                <div className={styles.Location}>
-                  {locationData.name ? (
-                    <p className="fw-bold">
-                      {locationData.name},{" "}
-                      {locationData.country === "United States of America" ? (
-                        <span>{locationData.region}</span>
-                      ) : (
-                        <span>{locationData.country}</span>
-                      )}
-                    </p>
-                  ) : (
-                    <p></p>
-                  )}
-                </div>
-              </Row>
-              <Row className={`${styles.ConditionsContainer}`}>
-                <Col className="d-flex justify-content-end align-self-baseline">
+            <Row className="d-flex m-0 justify-content-center">
+              <Row className={`${styles.ConditionsContainer} pb-2 pb-lg-5`}>
+                <Col className="text-end align-self-center">
                   <Image
                     src={getWeatherIcon(weatherData.weather_code)}
                     alt="Weather Icon"
                     height={50}
                   />
                 </Col>
-                <Col className={`${styles.Conditions} m-auto`}>
-                  <p className="d-flex mb-0">
-                    {weatherData.weather_descriptions}
-                  </p>
-                  <p className="d-flex mb-0">
-                    {weatherData.temperature}
-                    °C
-                  </p>
+                <Col className={`${styles.Conditions} align-self-center`}>
+                  <div className="justify-content-left">
+                    {locationData.name ? (
+                      <span className="fw-bold">
+                        {locationData.name},{" "}
+                        {locationData.country === "United States of America" ? (
+                          <span>{locationData.region}</span>
+                        ) : (
+                          <span>{locationData.country}</span>
+                        )}
+                      </span>
+                    ) : (
+                      <p></p>
+                    )}
+                    <p className="mb-0">
+                      {weatherData.temperature}
+                      °C, {weatherData.weather_descriptions}
+                    </p>
+                  </div>
                 </Col>
               </Row>
-              <Map />
-            </div>
+              <Row>
+                <Map />
+              </Row>
+            </Row>
           )
         )}
       </Row>

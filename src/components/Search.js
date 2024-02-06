@@ -9,7 +9,7 @@ const Search = () => {
   return (
     <Container>
       <div
-        className={`${styles.InputContainer} d-flex input-group justify-content-center`}
+        className={`${styles.InputContainer} d-flex m-auto input-group justify-content-center`}
       >
         <span
           className={`${styles.InputSearch} input-group-text`}

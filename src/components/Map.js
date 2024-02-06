@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import useWeatherStore from "../hooks/useWeatherStore";
 import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
+import styles from "../styles/Map.module.css";
 
 const libraries = ["places"];
 
@@ -21,8 +22,8 @@ const Map = () => {
   const [markers, setMarkers] = useState([]);
 
   const mapContainerStyle = isSmallScreen
-    ? { height: "10rem", width: "17rem" }
-    : { height: "16rem", width: "23rem" };
+    ? { height: "10rem", width: "100%" }
+    : { height: "25rem", width: "100%", maxWidth: "675px" };
 
   const handleMapClickEvent = (e) => {
     const lat = e.latLng.lat();
@@ -43,8 +44,8 @@ const Map = () => {
 
   const onLoad = useCallback(function callback(map) {
     const worldBounds = new window.google.maps.LatLngBounds(
-      new window.google.maps.LatLng(85, -180),
-      new window.google.maps.LatLng(-85, 180)
+      new window.google.maps.LatLng(70, -120),
+      new window.google.maps.LatLng(-20, 120)
     );
     map.fitBounds(worldBounds);
   }, []);
@@ -52,18 +53,31 @@ const Map = () => {
   const onUnmount = useCallback(function callback() {}, []);
 
   if (loadError) {
-    return <div>Error loading maps</div>;
+    return (
+      <div
+        className={`${styles.LoadingMaps} d-flex justify-itme-center align-item-center fw-bold`}
+      >
+        Error loading maps
+      </div>
+    );
   }
 
   if (!isLoaded) {
-    return <div>Loading maps</div>;
+    return (
+      <div
+        className={`${styles.LoadingMaps} d-flex justify-itme-center align-item-center fw-bold`}
+      >
+        Loading maps
+      </div>
+    );
   }
 
   return (
     <div className="d-flex align-items-center justify-content-center">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={1}
+        zoom
+        gestureHandling="greedy"
         center={center}
         onLoad={onLoad}
         onUnmount={onUnmount}

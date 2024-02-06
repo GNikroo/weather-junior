@@ -1,22 +1,20 @@
 .App {
   position: relative;
-  min-height: 50%;
 }
 
 .Section {
+  padding: 0 3rem;
   background-color: transparent;
   overflow: hidden;
   margin: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 75vh;
   align-items: center;
 }
 
-@media only screen and (min-height: 1000px) {
+@media only screen and (max-width: 425px) {
   .Section {
-    min-height: 65vh;
+    padding: 0 .2rem;
   }
 }

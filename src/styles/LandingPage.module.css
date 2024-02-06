@@ -1,3 +1,11 @@
+.Section {
+    height: 95vh;
+}
+
+.Row {
+    height: 100%;
+}
+
 .Button1 {
     background-color: #fdbaac;
 }

@@ -1,37 +1,17 @@
+.RowContainer {
+    height: 100%;
+}
+
 .ConditionsContainer {
-    width: auto;
-    align-items: center;
+    width: 100%;
+    max-width: 675px;
 }
 
 .Conditions {
+    flex: 1.5 0 0%;
     font-weight: 500;
     font-size: 1rem;
     text-align: left;
-    padding-bottom: 1rem;
-}
-
-.InputContainer {
-    width: 19rem;
-    justify-content: center;
-}
-
-.InputSearch {
-    border: none;
-    background-color: #fff;
-}
-
-.Input {
-    text-align: center;
-    padding-left: 0.1rem;
-    border: none;
-    border-radius: 10px;
-    border-width: 0.5px;
-}
-
-.Location {
-    /* color: #593b52; */
-    font-weight: 800;
-    font-size: 0.9rem;
 }
 
 @media only screen and (min-height: 1000px) {
@@ -40,6 +20,13 @@
     }
 }
 
+@media only screen and (max-width: 425px) {
+    .Conditions {
+        font-size: 0.8rem;
+    }
+}
+
+/* 
 @media only screen and (max-height: 590px) {
     .Icon {
         height: 70px;
@@ -49,4 +36,4 @@
         font-weight: 600;
         font-size: 1rem;
     }
-}
+} */

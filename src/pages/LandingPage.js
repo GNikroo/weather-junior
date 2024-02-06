@@ -11,8 +11,10 @@ const LandingPage = () => {
   const handleClick3 = () => navigate("/getdressed");
 
   return (
-    <Container className="d-flex">
-      <Row className={`${appStyles.Section}`}>
+    <Container className={`${appStyles.Section} ${styles.Section} d-flex`}>
+      <Row
+        className={`${styles.Row} d-flex pb-5 text-center align-content-center`}
+      >
         <div className="p-3">
           <button
             className={`${styles.Button1} border-0 p-3`}

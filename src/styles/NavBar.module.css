@@ -1,5 +1,4 @@
 .Section {
-    padding: .5rem;
     background-color: transparent;
     margin: auto;
     position: relative;
@@ -27,22 +26,26 @@
     top: 1px;
 }
 
-.Dropdown {
-    justify-content: flex-end;
+.Hamburger {
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
 }
 
-.DropdownList div {
-    padding: 0.5rem;
+.Hamburger span {
+    width: 15px;
+    cursor: pointer;
+    border: none;
 }
 
-.DropdownList div a {
-    text-decoration: none;
-    font-weight: bold;
-    font-size: .9rem;
-    color: black;
+.Hamburger:active span,
+.Hamburger:focus span {
+    border: none;
 }
 
-@media only screen and (max-width: 413px) {
+@media only screen and (max-width: 425px) {
     .Brand {
         font-size: 1rem;
     }

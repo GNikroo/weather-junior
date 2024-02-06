@@ -1,5 +1,5 @@
 .InputContainer {
-    width: 19rem;
+    width: 65vw;
 }
 
 .InputSearch {
@@ -10,10 +10,11 @@
 }
 
 .Input {
-    width: 16rem;
+    flex: 1;
+    width: auto;
     text-align: left;
     font-size: .9rem;
-    padding: .2rem 0.4rem;
+    padding: .5rem 0.5rem;
     border: none;
     border-width: 0.5px;
 }
@@ -23,5 +24,10 @@
     .InputSearch {
         font-size: 0.7rem;
     }
+}
 
+@media only screen and (max-width: 464px) {
+    .Input {
+        width: 50%;
+    }
 }
