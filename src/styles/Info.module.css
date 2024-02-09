@@ -1,0 +1,13 @@
+.Info {
+    padding: 0;
+}
+
+.Info button,
+button:active,
+button:hover,
+button:focus,
+button:visited {
+    color: #2d2d31;
+    background-color: inherit;
+    border: none;
+}

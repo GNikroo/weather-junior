@@ -6,13 +6,11 @@ const NotFound = () => {
   return (
     <Container className="d-flex">
       <Row className={`${styles.NotFound} m-0`}>
-        <div className="align-self-center">
-          <span className="d-flex justify-content-center">
-            Looks like you're lost!
-          </span>
-          <span className="d-flex justify-content-center">
+        <div className="align-self-center text-left">
+          <p>Looks like you're lost!</p>
+          <p>
             Try going back to the&nbsp;<a href="/">beginning</a>.
-          </span>
+          </p>
         </div>
       </Row>
     </Container>
