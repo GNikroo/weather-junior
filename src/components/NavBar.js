@@ -47,11 +47,11 @@ const NavBar = () => {
             </Nav.Link>
             <Nav.Link
               as={Link}
-              to="/about"
+              to="/info"
               className={styles.Links}
               onClick={handleNavClose}
             >
-              About
+              App Information
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
