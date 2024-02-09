@@ -53,6 +53,12 @@ const HistoricalWeather = () => {
     }
   };
 
+  const resetDate = () => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    setInputDate("");
+    setHistoricalWeatherData(null);
+  };
+
   const closeModal = () => {
     setErrorMessage("");
   };
@@ -89,7 +95,7 @@ const HistoricalWeather = () => {
         <Col className="d-flex p-0">
           <p className="m-0 text-nowrap">Choose a date:</p>
         </Col>
-        <Col>
+        <Col className="d-flex align-items-center">
           <input
             type="date"
             value={inputDate}
@@ -97,6 +103,10 @@ const HistoricalWeather = () => {
             onChange={handleInputDateChange}
             className={`${styles.Input} ${styles.InputDate}`}
           />
+          <i
+            onClick={resetDate}
+            className={`${styles.ResetButton} fa-solid fa-circle-xmark`}
+          ></i>
           {errorMessage && (
             <ErrorModal errorMessage={errorMessage} onClose={closeModal} />
           )}

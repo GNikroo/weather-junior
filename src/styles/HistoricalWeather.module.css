@@ -30,27 +30,23 @@
     padding: .3rem .1rem;
 }
 
+.ResetButton,
+.ResetButton:active,
+.ResetButton:hover,
+.ResetButton:focus,
+.ResetButton:visited {
+    padding-left: 20px;
+    cursor: pointer;
+    color: #2d2d31;
+    background-color: inherit;
+    border: none;
+}
+
 .Location {
     color: #593b52;
     font-weight: 800;
     font-size: 0.9rem;
 }
-
-.SuggestionsList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.SuggestionItem {
-    padding: 8px;
-    cursor: pointer;
-}
-
-.SuggestionItem:hover {
-    background-color: #f0f0f0;
-}
-
 
 @media only screen and (min-height: 1000px) {
     .Section {
