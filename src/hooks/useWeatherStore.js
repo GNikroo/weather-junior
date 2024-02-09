@@ -6,13 +6,13 @@ const useWeatherStore = create(
   persist(
     (set, get) => ({
       weatherData: null,
-      inputLocation:
-        localStorage.getItem("recentLocation") || "Stockholm, Sweden",
+      inputLocation: localStorage.getItem("recentLocation") || "",
       locationData: null,
       isLoading: true,
-      handleLocationChange: (e) => {
-        const newLocation = e.target.value;
-        set({ inputLocation: newLocation });
+      handleLocationChange: (newLocation) => {
+        if (newLocation !== undefined) {
+          set({ inputLocation: newLocation });
+        }
       },
       handleMapClick: (lat, lng) => {
         const newLocation = `${lat},${lng}`;

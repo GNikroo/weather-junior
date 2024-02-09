@@ -1,28 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import styles from "../styles/Search.module.css";
 import useWeather from "../hooks/useWeatherStore";
 
 const Search = () => {
-  const { handleLocationChange, inputLocation } = useWeather();
+  const { handleLocationChange } = useWeather();
+  const [inputLocation, setInputLocation] = useState("");
+
+  const handleButtonClick = () => {
+    handleLocationChange(inputLocation);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleLocationChange(inputLocation);
+    }
+  };
 
   return (
     <Container>
       <div
         className={`${styles.InputContainer} d-flex m-auto input-group justify-content-center`}
       >
-        <span
-          className={`${styles.InputSearch} input-group-text`}
-          id="basic-addon1"
+        <button
+          className={`${styles.InputSearch} btn btn-outline-secondary`}
+          onClick={handleButtonClick}
+          aria-label="Search"
         >
           🔎
-        </span>
+        </button>
         <input
           type="text"
           value={inputLocation}
-          onChange={handleLocationChange}
-          className={`${styles.Input}`}
-          aria-describedby="basic-addon1"
+          onChange={(e) => setInputLocation(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className={`${styles.Input} form-control`}
+          aria-label="Location Input"
         />
       </div>
     </Container>
