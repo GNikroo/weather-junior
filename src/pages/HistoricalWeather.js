@@ -62,9 +62,8 @@ const HistoricalWeather = () => {
       try {
         const accessKey = process.env.REACT_APP_WEATHER_API_KEY;
         const weatherResponse = await axios.get(
-          `https://api.weatherstack.com/historical?access_key=${accessKey}&query=${inputLocation}&historical_date=${inputDate}&hourly=1&interval=1`
+          `https://api.weatherstack.com/historical?access_key=${accessKey}&query=${inputLocation}&historical_date=${inputDate}&hourly=1&avgtemp`
         );
-
         if (weatherResponse.data && weatherResponse.data.historical) {
           setHistoricalWeatherData(
             weatherResponse.data.historical[inputDate].hourly[6]
