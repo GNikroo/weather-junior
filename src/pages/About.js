@@ -10,7 +10,7 @@ const About = () => {
         it easier for children to understand and interact with.
       </p>
       <p>
-        The appl includes features such as animated weather icons, colorful
+        The app includes features such as animated weather icons, colorful
         visuals, and simplified weather descriptions. It also provides
         educational content related to weather phenomena, allowing children to
         learn while exploring the app.
