@@ -9,11 +9,13 @@ const Search = () => {
 
   const handleButtonClick = () => {
     handleLocationChange(inputLocation);
+    document.activeElement.blur();
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleLocationChange(inputLocation);
+      document.activeElement.blur();
     }
   };
 
