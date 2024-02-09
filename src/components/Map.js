@@ -23,7 +23,7 @@ const Map = () => {
 
   const mapContainerStyle = isSmallScreen
     ? { height: "10rem", width: "100%" }
-    : { height: "25rem", width: "100%", maxWidth: "675px" };
+    : { height: "18rem", width: "100%", maxWidth: "675px" };
 
   const handleMapClickEvent = (e) => {
     const lat = e.latLng.lat();
@@ -40,6 +40,32 @@ const Map = () => {
     setCenter(newMarker);
 
     setMarkers([newMarker]);
+  };
+
+  const handleLocationChangeEvent = async (inputLocation) => {
+    try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+          inputLocation
+        )}&key=${process.env.REACT_APP_MAP_API_KEY}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch geolocation data");
+      }
+
+      const data = await response.json();
+
+      if (data.status !== "OK") {
+        throw new Error("Failed to retrieve geolocation data");
+      }
+
+      const { lat, lng } = data.results[0].geometry.location;
+      setCenter({ lat, lng });
+      setMarkers([{ lat, lng }]);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onLoad = useCallback(function callback(map) {
@@ -82,6 +108,7 @@ const Map = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
         onClick={handleMapClickEvent}
+        onDragEnd={() => handleLocationChangeEvent()}
       >
         {markers.map((marker, index) => (
           <Marker key={index} position={marker} />

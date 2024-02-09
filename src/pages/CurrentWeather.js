@@ -35,20 +35,20 @@ const CurrentWeather = () => {
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
       <Row className={`${styles.RowContainer} m-auto`}>
         <Search />
-        <Col className="py-1 py-lg-4">
+        <Col className="py-1">
           {weatherData ? (
             <Image
               src={
                 getOutfit(weatherData.temperature, weatherData.weather_code)
                   .image
               }
-              style={{ height: isSmallScreen ? 260 : 500 }}
+              style={{ height: isSmallScreen ? 260 : 400 }}
               alt="Outfit"
             />
           ) : (
             <Image
               src={image}
-              style={{ height: isSmallScreen ? 260 : 500 }}
+              style={{ height: isSmallScreen ? 260 : 400 }}
               alt="Outfit"
             />
           )}
@@ -59,7 +59,7 @@ const CurrentWeather = () => {
           weatherData &&
           locationData && (
             <Row className="d-flex m-0 justify-content-center">
-              <Row className={`${styles.ConditionsContainer} pb-2 pb-lg-5`}>
+              <Row className={`${styles.ConditionsContainer} pb-2 pb-lg-4`}>
                 <Col className="text-end align-self-center">
                   <Image
                     src={getWeatherIcon(weatherData.weather_code)}
