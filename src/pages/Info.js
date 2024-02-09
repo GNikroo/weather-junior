@@ -1,5 +1,4 @@
 import React from "react";
-import { Dropdown } from "react-bootstrap";
 import styles from "../styles/Info.module.css";
 
 const Info = () => {

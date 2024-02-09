@@ -54,7 +54,6 @@ const HistoricalWeather = () => {
   };
 
   const resetDate = () => {
-    const currentDate = new Date().toISOString().split("T")[0];
     setInputDate("");
     setHistoricalWeatherData(null);
   };
