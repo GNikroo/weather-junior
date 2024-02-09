@@ -31,14 +31,6 @@ const NavBar = () => {
           <Nav className="ms-auto">
             <Nav.Link
               as={Link}
-              to="/about"
-              className={styles.Links}
-              onClick={handleNavClose}
-            >
-              About
-            </Nav.Link>
-            <Nav.Link
-              as={Link}
               to="/today"
               className={styles.Links}
               onClick={handleNavClose}
@@ -52,6 +44,14 @@ const NavBar = () => {
               onClick={handleNavClose}
             >
               Historical Weather
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/about"
+              className={styles.Links}
+              onClick={handleNavClose}
+            >
+              About
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
