@@ -86,6 +86,104 @@ const HistoricalWeather = () => {
   }, [inputLocation, inputDate]);
 
   return (
+    // <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
+    //   <Row>
+    //     <Search />
+    //   </Row>
+    //   <Row className="py-2 align-items-center">
+    //     <Col className="d-flex p-0">
+    //       <p className="m-0 text-nowrap">Choose a date:</p>
+    //     </Col>
+    //     <Col className="d-flex align-items-center">
+    //       <input
+    //         type="date"
+    //         value={inputDate}
+    //         min="2009-01-01"
+    //         onChange={handleInputDateChange}
+    //         className={`${styles.Input} ${styles.InputDate}`}
+    //       />
+    //       <i
+    //         onClick={resetDate}
+    //         className={`${styles.ResetButton} fa-solid fa-circle-xmark`}
+    //       ></i>
+    //       {errorMessage && (
+    //         <ErrorModal errorMessage={errorMessage} onClose={closeModal} />
+    //       )}
+    //     </Col>
+    //   </Row>
+    //   <Row className="py-1 m-auto">
+    //     <Col>
+    //       {historicalWeatherData ? (
+    //         <Image
+    //           src={
+    //             getOutfit(
+    //               historicalWeatherData.temperature,
+    //               historicalWeatherData.weather_code
+    //             ).image
+    //           }
+    //           style={{ height: isSmallScreen ? 300 : 500 }}
+    //           alt="Outfit"
+    //         />
+    //       ) : (
+    //         <Image
+    //           src={image}
+    //           style={{ height: isSmallScreen ? 300 : 500 }}
+    //           alt="Outfit"
+    //         />
+    //       )}
+    //     </Col>
+    //     {isLoading ? (
+    //       <p>Loading...</p>
+    //     ) : (
+    //       historicalWeatherData && (
+    //         <div>
+    //           {historicalWeatherData.inputDate ? (
+    //             <div className="d-block">
+    //               <Row className="justify-content-center">
+    //                 <div className={styles.Location}>
+    //                   <p className="fw-bold m-0">
+    //                     {locationData.name},{" "}
+    //                     {locationData.country === "United States of America" ? (
+    //                       <span>{locationData.region}</span>
+    //                     ) : (
+    //                       <span>{locationData.country}</span>
+    //                     )}
+    //                   </p>
+    //                   <p>
+    //                     <i className="fa-regular fa-calendar-check"></i>{" "}
+    //                     {inputDate}
+    //                   </p>
+    //                 </div>
+    //               </Row>
+    //               <Row className={`${styles.ConditionsContainer}`}>
+    //                 <Col className="d-flex justify-content-end">
+    //                   <Image
+    //                     src={getWeatherIcon(historicalWeatherData.weather_code)}
+    //                     alt="Weather Icon"
+    //                     height={65}
+    //                   />
+    //                 </Col>
+    //                 <Col className={`${styles.Conditions} m-auto`}>
+    //                   <p className="d-flex mb-0">
+    //                     {historicalWeatherData.weather_descriptions}
+    //                   </p>
+    //                   <p className="d-flex mb-0">
+    //                     {historicalWeatherData.temperature}
+    //                     °C
+    //                   </p>
+    //                 </Col>
+    //               </Row>
+    //             </div>
+    //           ) : (
+    //             <div className="d-block">
+    //               <p className={styles.Location}>Choose a date and place!</p>
+    //             </div>
+    //           )}
+    //         </div>
+    //       )
+    //     )}
+    //   </Row>
+    // </Container>
     <Container className={`${appStyles.Section} ${styles.Section} text-center`}>
       <Row>
         <Search />
@@ -135,40 +233,50 @@ const HistoricalWeather = () => {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          historicalWeatherData && (
-            <div className="d-block">
-              <Row className="justify-content-center">
-                <div className={styles.Location}>
-                  <p className="fw-bold">
-                    {inputDate} in {locationData.name},{" "}
-                    {locationData.country === "United States of America" ? (
-                      <span>{locationData.region}</span>
-                    ) : (
-                      <span>{locationData.country}</span>
-                    )}
-                  </p>
-                </div>
-              </Row>
-              <Row className={`${styles.ConditionsContainer}`}>
-                <Col className="d-flex justify-content-end">
-                  <Image
-                    src={getWeatherIcon(historicalWeatherData.weather_code)}
-                    alt="Weather Icon"
-                    height={65}
-                  />
-                </Col>
-                <Col className={`${styles.Conditions} m-auto`}>
-                  <p className="d-flex mb-0">
-                    {historicalWeatherData.weather_descriptions}
-                  </p>
-                  <p className="d-flex mb-0">
-                    {historicalWeatherData.temperature}
-                    °C
-                  </p>
-                </Col>
-              </Row>
-            </div>
-          )
+          <div className="d-block">
+            {inputDate && historicalWeatherData ? (
+              <div>
+                <Row className="justify-content-center">
+                  <div className={styles.Location}>
+                    <p className="fw-bold m-0">
+                      {locationData.name},{" "}
+                      {locationData.country === "United States of America" ? (
+                        <span>{locationData.region}</span>
+                      ) : (
+                        <span>{locationData.country}</span>
+                      )}
+                    </p>
+                    <p>
+                      <i className="fa-regular fa-calendar-check"></i>{" "}
+                      {inputDate}
+                    </p>
+                  </div>
+                </Row>
+                <Row className={`${styles.ConditionsContainer}`}>
+                  <Col className="d-flex justify-content-end">
+                    <Image
+                      src={getWeatherIcon(historicalWeatherData.weather_code)}
+                      alt="Weather Icon"
+                      height={65}
+                    />
+                  </Col>
+                  <Col className={`${styles.Conditions} m-auto`}>
+                    <p className="d-flex mb-0">
+                      {historicalWeatherData.weather_descriptions}
+                    </p>
+                    <p className="d-flex mb-0">
+                      {historicalWeatherData.temperature}
+                      °C
+                    </p>
+                  </Col>
+                </Row>
+              </div>
+            ) : (
+              <div className="d-block">
+                <p className={styles.ChooseDate}>Choose a date and place!</p>
+              </div>
+            )}
+          </div>
         )}
       </Row>
     </Container>

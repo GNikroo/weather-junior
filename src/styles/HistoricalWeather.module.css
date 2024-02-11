@@ -31,10 +31,10 @@
 }
 
 .ResetButton,
-.ResetButton:active,
+.ResetButton:visited,
 .ResetButton:hover,
-.ResetButton:focus,
-.ResetButton:visited {
+.ResetButton:active,
+.ResetButton:focus {
     padding-left: 20px;
     cursor: pointer;
     color: #2d2d31;
@@ -43,9 +43,13 @@
 }
 
 .Location {
-    color: #593b52;
-    font-weight: 800;
-    font-size: 0.9rem;
+    color: inherit;
+    font-size: 1rem;
+}
+
+.ChooseDate {
+    font-size: 1.2rem;
+    padding: 2rem;
 }
 
 @media only screen and (min-height: 1000px) {
