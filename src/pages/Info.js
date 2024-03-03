@@ -1,9 +1,8 @@
 import React from "react";
-import styles from "../styles/Info.module.css";
 
 const Info = () => {
   return (
-    <div className={`${styles.Info} p-3`}>
+    <div className="p-4">
       <div className="d-flex flex-column">
         <h2>About Weather Jr.</h2>
         <p>

@@ -6,39 +6,32 @@
     height: 100%;
 }
 
-.Button1 {
-    background-color: #fdbaac;
-}
-
-.Button2 {
-    background-color: #ec856f;
-}
-
-.Button3 {
-    background-color: #e65334;
-}
-
 .Button1,
 .Button2,
 .Button3 {
-    color: #fff9f9;
+    color: #fff;
+    background-color: #2a9d8f;
     transition: background-color 0.3s, transform 0.3s;
     font-size: 1.5rem;
     font-weight: 600;
     border-radius: 25px;
     width: 240px;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(255, 159, 124, 0.1);
 }
 
 .Button1:hover,
 .Button2:hover,
 .Button3:hover {
-    background-color: #922d18;
+    background-color: #33C1B1;
 }
 
 .Button1:active,
 .Button2:active,
 .Button3:active {
-    background-color: #22223B;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #1A6158;
     transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(255, 90, 59, 0.2);
 }

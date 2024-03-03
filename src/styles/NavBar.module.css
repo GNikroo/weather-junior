@@ -8,22 +8,26 @@
 }
 
 .Brand {
-    position: relative;
     font-family: 'Gochi Hand', cursive;
-    justify-content: flex-start;
-    color: #4A4E69;
-    font-weight: 600;
-    font-size: 1.5rem;
-    transition: .5s text-shadow;
+    font-size: 2rem;
+    color: #F0852D;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, color 0.2s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .Brand:hover {
-    color: inherit;
-    text-shadow: -1px 0 transparent, 0 1px #4A4E69, 1px 0 #4A4E69, 0 -1px transparent;
+    color: #ea9753;
+    transform: scale(1.1);
 }
 
 .Brand:active {
-    top: 1px;
+    transform: scale(1.05);
+}
+
+.Brand:focus {
+    color: #F0852D;
+    outline: none;
 }
 
 .Hamburger {

@@ -4,7 +4,7 @@ import useWeatherStore from "../hooks/useWeatherStore";
 import ScreenSizeChecker from "../hooks/ScreenSizeChecker";
 import styles from "../styles/Map.module.css";
 
-const libraries = ["places"];
+const libraries = ["places", "geocoding"];
 
 const Map = () => {
   const { handleMapClick } = useWeatherStore();
@@ -42,31 +42,33 @@ const Map = () => {
     setMarkers([newMarker]);
   };
 
-  const handleLocationChangeEvent = async (inputLocation) => {
-    try {
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-          inputLocation
-        )}&key=${process.env.REACT_APP_MAP_API_KEY}`
-      );
+  // const handleLocationChangeEvent = async (inputLocation) => {
+  //   try {
+  //     console.log(inputLocation);
+  //     const accessKey = process.env.REACT_APP_WEATHER_API_KEY;
+  //     const response = await axios.get(
+  //       `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+  //         inputLocation
+  //       )}&key=${accessKey}`
+  //     );
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch geolocation data");
-      }
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch geolocation data");
+  //     }
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (data.status !== "OK") {
-        throw new Error("Failed to retrieve geolocation data");
-      }
+  //     if (data.status !== "OK") {
+  //       throw new Error("Failed to retrieve geolocation data");
+  //     }
 
-      const { lat, lng } = data.results[0].geometry.location;
-      setCenter({ lat, lng });
-      setMarkers([{ lat, lng }]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     const { lat, lng } = data.results[0].geometry.location;
+  //     setCenter({ lat, lng });
+  //     setMarkers([{ lat, lng }]);
+  //   } catch (error) {
+  //     console.error("Error geocoding location:", error);
+  //   }
+  // };
 
   const onLoad = useCallback(function callback(map) {
     const worldBounds = new window.google.maps.LatLngBounds(
@@ -108,7 +110,6 @@ const Map = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
         onClick={handleMapClickEvent}
-        onDragEnd={() => handleLocationChangeEvent()}
       >
         {markers.map((marker, index) => (
           <Marker key={index} position={marker} />

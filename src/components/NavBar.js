@@ -21,7 +21,7 @@ const NavBar = () => {
           to="/"
           className={`${styles.Brand} text-decoration-none`}
         >
-          Weather Jr.
+          weather jr.
         </Navbar.Brand>
         <Navbar.Toggle
           className={styles.Hamburger}

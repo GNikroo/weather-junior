@@ -28,7 +28,7 @@ const LandingPage = () => {
             className={`${styles.Button2} border-0 p-3`}
             onClick={handleClick2}
           >
-            This day in history
+            A Day in History
           </button>
         </div>
         <div className="d-none p-3">
